@@ -759,6 +759,125 @@
       color: var(--muted);
     }
 
+    /* ── 10 FREE WEBSITES PROMO ── */
+    #free-websites {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(59,130,246,0.18);
+      border-bottom: 1px solid rgba(59,130,246,0.18);
+    }
+    .promo-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 450px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .promo-inner {
+      text-align: center;
+      position: relative;
+    }
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #86efac;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+    .promo-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34,197,94,0.8);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.6; transform: scale(0.8); }
+    }
+    .promo-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .promo-title .promo-accent { color: var(--accent); }
+    .promo-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 610px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .promo-features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .promo-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.07);
+      border: 1px solid rgba(59,130,246,0.18);
+      border-radius: 8px;
+      padding: 0.6rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .promo-feature svg { color: var(--accent); flex-shrink: 0; }
+    .promo-spots {
+      max-width: 440px;
+      margin: 0 auto 2.75rem;
+    }
+    .promo-spots-bar {
+      height: 5px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .promo-spots-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 10px;
+    }
+    .promo-spots-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .promo-spots-text strong { color: var(--text); }
+    .btn-promo {
+      background: linear-gradient(135deg, #2563eb, var(--accent));
+      color: #fff;
+      font-size: 1rem;
+      padding: 1rem 2.4rem;
+      border-radius: 10px;
+      box-shadow: 0 0 32px rgba(59,130,246,0.35);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .btn-promo:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      transform: translateY(-2px);
+      box-shadow: 0 0 48px rgba(59,130,246,0.55);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -769,6 +888,7 @@
       .hero { padding: 7rem 1.5rem 4rem; }
       section { padding: 4rem 1.5rem; }
       .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .promo-features { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -807,6 +927,61 @@
         </a>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
+    </div>
+  </section>
+
+  <!-- 10 FREE WEBSITES PROMO -->
+  <section id="free-websites">
+    <div class="promo-glow"></div>
+    <div class="container promo-inner">
+
+      <div class="promo-badge">
+        <span class="promo-badge-dot"></span>
+        Applications Now Open
+      </div>
+
+      <h2 class="promo-title">
+        10 Free Websites<br>
+        <span class="promo-accent">for Illawarra Businesses</span>
+      </h2>
+
+      <p class="promo-desc">
+        I'm personally selecting 10 local businesses to receive a fully custom, professional website — completely free.
+        I'll come to you in person, get to know your business, and take photos on the day.
+        No templates. No shortcuts. A real website built to bring in real customers.
+      </p>
+
+      <div class="promo-features">
+        <div class="promo-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          In-person visit included
+        </div>
+        <div class="promo-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          We take the photos
+        </div>
+        <div class="promo-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Custom-coded, not templated
+        </div>
+        <div class="promo-feature">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Illawarra businesses only
+        </div>
+      </div>
+
+      <div class="promo-spots">
+        <div class="promo-spots-bar">
+          <div class="promo-spots-fill"></div>
+        </div>
+        <p class="promo-spots-text"><strong>Limited to 10 spots.</strong> Applications are reviewed and selected personally by Jesse — not first come, first served.</p>
+      </div>
+
+      <a href="#apply" class="btn btn-promo">
+        Apply for a Free Website
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
     </div>
   </section>
 
