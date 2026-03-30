@@ -45,1173 +45,336 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            yellow: '#F5E642',
+            cream:  '#F5F5EF',
+            dark:   '#0D0D0D',
+          },
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          },
+        }
+      }
+    }
+  </script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #080b12;
-      --bg2:       #0e1420;
-      --bg3:       #141b2a;
-      --accent:    #3b82f6;
-      --accent2:   #60a5fa;
-      --text:      #e8edf5;
-      --muted:     #8a97ab;
-      --border:    rgba(255,255,255,0.07);
-      --card-bg:   #111827;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 0 2rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(8,11,18,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-logo .solutions {
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-left: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 100%);
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 300px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      max-width: 780px;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.25);
-      border-radius: 100px;
-      padding: 0.3rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--accent2);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 0.3rem;
-    }
-    .hero h1 .hawke { color: var(--text); }
-    .hero h1 .tech  { color: var(--accent); }
-    .hero h1 .solutions-word {
-      display: block;
-      font-size: clamp(1rem, 2.5vw, 1.6rem);
-      font-weight: 400;
-      color: var(--muted);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      margin-top: 0.4rem;
-    }
-
-    .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      color: var(--muted);
-      max-width: 560px;
-      margin: 1.8rem auto 2.5rem;
-      font-weight: 400;
-      line-height: 1.7;
-    }
-
-    .hero-ctas {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: var(--accent2);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(59,130,246,0.35);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.04);
-      transform: translateY(-1px);
-    }
-
-    /* ── SECTIONS ── */
-    section { padding: 6rem 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 560px;
-      line-height: 1.7;
-    }
-
-    /* ── ABOUT ── */
-    #about { background: var(--bg2); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .about-services {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .service-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(59,130,246,0.07);
-      border: 1px solid rgba(59,130,246,0.15);
-      border-radius: 8px;
-      padding: 0.7rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .service-chip svg { color: var(--accent); flex-shrink: 0; }
-
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-    .stat-num {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--accent);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    /* ── PORTFOLIO ── */
-    #work { background: var(--bg); }
-
-    .portfolio-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .portfolio-header .section-sub { margin: 0 auto; }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      border-color: rgba(59,130,246,0.3);
-    }
-
-    /* Browser frame */
-    .browser-frame {
-      background: #1a1f2e;
-      border-bottom: 1px solid var(--border);
-    }
-    .browser-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.7rem 1rem;
-    }
-    .browser-dots {
-      display: flex;
-      gap: 5px;
-    }
-    .browser-dots span {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-    }
-    .dot-red   { background: #ff5f57; }
-    .dot-yellow{ background: #febc2e; }
-    .dot-green { background: #28c840; }
-
-    .browser-url {
-      flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.75rem;
-      color: var(--muted);
-      font-family: monospace;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .browser-preview {
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .browser-preview iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      transform: scale(0.5);
-      transform-origin: top left;
-      pointer-events: none;
-      width: 200%;
-      height: 900px;
-    }
-
-    /* Site preview panels */
-    .site-preview {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center top;
-    }
-
-    /* Dhok Koon preview */
-    .preview-dhokkoon {
-      background-image: url('https://dhokkoon.com/dhokoon-cover-tables.jpg');
-    }
-    .preview-dhokkoon .preview-overlay {
-      background: linear-gradient(to bottom,
-        rgba(0,0,0,0.45) 0%,
-        rgba(80,10,10,0.35) 40%,
-        rgba(0,0,0,0.65) 100%);
-    }
-    .preview-dhokkoon .preview-nav {
-      background: rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .preview-dhokkoon .preview-logo-text {
-      color: #c9a84c;
-      font-family: Georgia, serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    .preview-dhokkoon .preview-headline {
-      font-family: Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.7);
-      line-height: 1.2;
-    }
-    .preview-dhokkoon .preview-sub {
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.8);
-      font-style: italic;
-      margin-top: 0.3rem;
-    }
-    .preview-dhokkoon .preview-btn {
-      background: #c9a84c;
-      color: #1a0a00;
-    }
-
-    /* Splash n Dash preview */
-    .preview-snd {
-      background-image: url('https://splashndashmd.com/splashndash-hero.jpg');
-    }
-    .preview-snd .preview-overlay {
-      background: linear-gradient(to bottom,
-        rgba(2,20,45,0.7) 0%,
-        rgba(2,20,45,0.5) 50%,
-        rgba(2,20,45,0.75) 100%);
-    }
-    .preview-snd .preview-nav {
-      background: rgba(5,25,55,0.8);
-      border-bottom: 1px solid rgba(0,210,255,0.15);
-    }
-    .preview-snd .preview-logo-text {
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .preview-snd .preview-headline {
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: -0.01em;
-      line-height: 1.1;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.6);
-    }
-    .preview-snd .preview-headline em {
-      color: #00c8f0;
-      font-style: normal;
-    }
-    .preview-snd .preview-sub {
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.7);
-      margin-top: 0.3rem;
-    }
-    .preview-snd .preview-btn {
-      background: #00c8f0;
-      color: #021433;
-    }
-
-    /* Shared preview structure */
-    .preview-overlay {
-      position: absolute;
-      inset: 0;
-    }
-    .preview-content {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    .preview-nav {
-      display: flex;
-      align-items: center;
-      padding: 0 12px;
-      height: 32px;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .preview-nav-links-row {
-      display: flex;
-      gap: 8px;
-      margin-left: auto;
-    }
-    .preview-nav-link-item {
-      font-size: 0.55rem;
-      color: rgba(255,255,255,0.65);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-    .preview-hero-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 16px 16px;
-    }
-    .preview-badge {
-      display: inline-block;
-      font-size: 0.5rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 100px;
-      padding: 0.15rem 0.5rem;
-      margin-bottom: 0.5rem;
-      width: fit-content;
-    }
-    .preview-btn {
-      display: inline-block;
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-      border-radius: 4px;
-      margin-top: 0.65rem;
-      width: fit-content;
-    }
-
-    /* Card content */
-    .project-info {
-      padding: 1.5rem 1.75rem 1.75rem;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.9rem;
-    }
-    .tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 100px;
-      background: rgba(59,130,246,0.1);
-      color: var(--accent2);
-      border: 1px solid rgba(59,130,246,0.2);
-    }
-
-    .project-name {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      text-decoration: none;
-      transition: gap 0.2s, color 0.2s;
-    }
-    .project-link:hover {
-      gap: 0.65rem;
-      color: var(--accent2);
-    }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--bg2); }
-
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contact-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .contact-item:hover {
-      border-color: rgba(59,130,246,0.3);
-      transform: translateX(4px);
-    }
-
-    .contact-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-
-    .contact-item-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 0.15rem;
-    }
-    .contact-item-value {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .contact-form-side {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-    }
-
-    .contact-form-side h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-    }
-    .contact-form-side p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .form-field {
-      margin-bottom: 1rem;
-    }
-    .form-field label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .form-field input,
-    .form-field textarea,
-    .form-field select {
-      width: 100%;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: var(--text);
-      font-size: 0.9rem;
-      font-family: inherit;
-      transition: border-color 0.2s;
-      outline: none;
-    }
-    .form-field input:focus,
-    .form-field textarea:focus,
-    .form-field select:focus {
-      border-color: var(--accent);
-    }
-    .form-field textarea { resize: vertical; min-height: 100px; }
-    .form-field select option { background: var(--bg2); }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-    .footer-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    .footer-logo span { color: var(--accent); }
-    .footer-logo .solutions { font-size: 0.7rem; font-weight: 400; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-    footer p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ── 10 FREE WEBSITES PROMO ── */
-    #free-websites {
-      background: var(--bg2);
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid rgba(59,130,246,0.18);
-      border-bottom: 1px solid rgba(59,130,246,0.18);
-    }
-    .promo-glow {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 900px; height: 450px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.09) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .promo-inner {
-      text-align: center;
-      position: relative;
-    }
-    .promo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.4);
-      border-radius: 100px;
-      padding: 0.35rem 1rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #86efac;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
-    }
-    .promo-badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 8px rgba(34,197,94,0.8);
-      animation: pulse-green 2s infinite;
-    }
-    @keyframes pulse-green {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.6; transform: scale(0.8); }
-    }
-    .promo-title {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-    }
-    .promo-title .promo-accent { color: var(--accent); }
-    .promo-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 610px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.8;
-    }
-    .promo-features {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .promo-feature {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.07);
-      border: 1px solid rgba(59,130,246,0.18);
-      border-radius: 8px;
-      padding: 0.6rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .promo-feature svg { color: var(--accent); flex-shrink: 0; }
-    .promo-spots {
-      max-width: 440px;
-      margin: 0 auto 2.75rem;
-    }
-    .promo-spots-bar {
-      height: 5px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 10px;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-    }
-    .promo-spots-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 10px;
-    }
-    .promo-spots-text {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-    .promo-spots-text strong { color: var(--text); }
-    .btn-promo {
-      background: linear-gradient(135deg, #2563eb, var(--accent));
-      color: #fff;
-      font-size: 1rem;
-      padding: 1rem 2.4rem;
-      border-radius: 10px;
-      box-shadow: 0 0 32px rgba(59,130,246,0.35);
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-    .btn-promo:hover {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      transform: translateY(-2px);
-      box-shadow: 0 0 48px rgba(59,130,246,0.55);
-    }
-
-    /* ── MOBILE NAV ── */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text);
-      cursor: pointer;
-      padding: 0.4rem 0.5rem;
-      line-height: 0;
-      transition: border-color 0.2s;
-    }
-    .nav-toggle:hover { border-color: rgba(255,255,255,0.2); }
-
-    /* ── NAV FREE WEBSITE LINK ── */
-    .nav-free {
-      color: #86efac !important;
-      font-weight: 600 !important;
-    }
-    .nav-free:hover { color: #fff !important; }
-
-    /* ── HERO PROMO ANNOUNCEMENT ── */
-    .hero-promo-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(34,197,94,0.08);
-      border: 1px solid rgba(34,197,94,0.28);
-      border-radius: 100px;
-      padding: 0.3rem 0.9rem 0.3rem 0.7rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #86efac;
-      text-decoration: none;
-      margin-bottom: 1.25rem;
-      transition: background 0.2s, border-color 0.2s;
-      letter-spacing: 0.01em;
-    }
-    .hero-promo-link:hover {
-      background: rgba(34,197,94,0.15);
-      border-color: rgba(34,197,94,0.5);
-    }
-    .hero-promo-link svg { flex-shrink: 0; }
-    .hero-promo-arrow {
-      color: rgba(134,239,172,0.6);
-      font-size: 0.85rem;
-    }
-
-    /* ── SCROLL FADE-IN ── */
+    /* Scroll fade-in */
     .fade-up {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .fade-up.visible {
       opacity: 1;
       transform: none;
     }
-
-    /* ── FOOTER LINKS ── */
-    .footer-nav {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
+    /* Mobile nav open state */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+    /* Hero headline size */
+    .hero-headline {
+      font-size: clamp(3.2rem, 9vw, 7.5rem);
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      font-weight: 900;
     }
-    .footer-nav a {
-      font-size: 0.82rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
+    .section-headline {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      font-weight: 900;
     }
-    .footer-nav a:hover { color: var(--text); }
-    .footer-nav a.footer-free { color: #86efac; }
-    .footer-nav a.footer-free:hover { color: #fff; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 64px; left: 0; right: 0;
-        background: rgba(8,11,18,0.97);
-        backdrop-filter: blur(16px);
-        padding: 1.75rem 2rem 2rem;
-        gap: 0;
-        border-bottom: 1px solid var(--border);
-        z-index: 99;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links li { border-bottom: 1px solid var(--border); }
-      .nav-links li:last-child { border-bottom: none; }
-      .nav-links a {
-        display: block;
-        padding: 0.9rem 0;
-        font-size: 1rem;
-      }
-      .nav-toggle { display: block; }
-      .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .about-services { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .hero { padding: 7rem 1.5rem 4rem; }
-      section { padding: 4rem 1.5rem; }
-      .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-      .promo-features { flex-direction: column; align-items: center; }
+    .quote-text {
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 900;
     }
   </style>
 </head>
-<body>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <span>Hawke Tech</span><span class="solutions">&nbsp;Solutions</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#free-websites" class="nav-free">Free Website</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <line x1="3" y1="6" x2="21" y2="6"/>
-        <line x1="3" y1="12" x2="21" y2="12"/>
-        <line x1="3" y1="18" x2="21" y2="18"/>
-      </svg>
-    </button>
+<body class="bg-white text-dark font-sans antialiased overflow-x-hidden">
+
+  <!-- ── NAV ── -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+      <a href="#" class="font-black text-lg tracking-tight text-dark">
+        Hawke<span class="bg-yellow text-dark px-1 rounded">Tech</span>
+        <span class="text-gray-400 font-normal text-sm ml-1 tracking-widest uppercase">Solutions</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8 list-none">
+        <li><a href="#about" class="text-sm font-medium text-gray-500 hover:text-dark transition-colors duration-150">About</a></li>
+        <li><a href="#work" class="text-sm font-medium text-gray-500 hover:text-dark transition-colors duration-150">Work</a></li>
+        <li><a href="#free-websites" class="text-sm font-semibold text-dark hover:text-yellow bg-yellow/20 px-3 py-1 rounded-full transition-colors duration-150">Free Website</a></li>
+        <li><a href="#contact" class="text-sm font-medium text-gray-500 hover:text-dark transition-colors duration-150">Contact</a></li>
+      </ul>
+
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors duration-150">
+        Get in Touch
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button id="navToggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+        <span class="w-6 h-0.5 bg-dark block transition-all duration-200" id="h1"></span>
+        <span class="w-6 h-0.5 bg-dark block transition-all duration-200" id="h2"></span>
+        <span class="w-6 h-0.5 bg-dark block transition-all duration-200" id="h3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden flex-col bg-white border-t border-gray-100 px-6 py-6 gap-5">
+      <a href="#about" class="text-base font-semibold text-dark py-1">About</a>
+      <a href="#work" class="text-base font-semibold text-dark py-1">Work</a>
+      <a href="#free-websites" class="text-base font-semibold text-dark py-1">Free Website ✦</a>
+      <a href="#contact" class="text-base font-semibold text-dark py-1">Contact</a>
+      <a href="#contact" class="mt-2 inline-flex justify-center bg-dark text-white font-semibold px-6 py-3 rounded-full text-sm">Get in Touch</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-inner">
-      <a href="#free-websites" class="hero-promo-link">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-        10 Free Websites — Now Accepting Applications
-        <span class="hero-promo-arrow">→</span>
+  <!-- ── HERO ── -->
+  <section class="pt-36 pb-20 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Promo announcement -->
+      <a href="#free-websites" class="inline-flex items-center gap-2.5 bg-yellow text-dark text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-10 hover:bg-yellow/80 transition-colors duration-150">
+        <span class="w-2 h-2 rounded-full bg-dark animate-pulse"></span>
+        10 Free Websites — Applications Now Open
+        <span class="text-dark/50">→</span>
       </a>
-      <div class="hero-eyebrow">Illawarra Web Solutions</div>
-      <h1>
-        <span class="hawke">Hawke</span><span class="tech"> Tech</span>
-        <span class="solutions-word">Solutions</span>
+
+      <h1 class="hero-headline text-dark mb-8 max-w-4xl">
+        Websites that<br>
+        <em class="not-italic bg-yellow px-3 rounded-lg">work</em> for<br>
+        your business.
       </h1>
-      <p class="hero-tagline">
-        Professional websites built for local businesses across the Illawarra.
-        Fast, modern, and designed to bring in customers.
+
+      <p class="text-xl text-gray-500 max-w-xl leading-relaxed mb-10 font-normal">
+        Professional, custom-coded websites for local Illawarra businesses. Built to rank on Google, look incredible, and bring in real customers.
       </p>
-      <div class="hero-ctas">
-        <a href="#work" class="btn btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#work" class="inline-flex items-center gap-2 bg-dark text-white font-semibold px-8 py-4 rounded-full hover:bg-gray-800 transition-colors duration-150">
           View Our Work
         </a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="#free-websites" class="inline-flex items-center gap-2 border-2 border-dark text-dark font-semibold px-8 py-4 rounded-full hover:bg-dark hover:text-white transition-colors duration-200">
+          10 Free Websites →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 10 FREE WEBSITES PROMO -->
-  <section id="free-websites">
-    <div class="promo-glow"></div>
-    <div class="container promo-inner">
-
-      <div class="promo-badge">
-        <span class="promo-badge-dot"></span>
-        Applications Now Open
+  <!-- ── CLIENT STRIP ── -->
+  <div class="border-y border-gray-100 bg-cream py-8 px-6">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs uppercase tracking-widest font-semibold text-gray-400 mb-5">Trusted by local Illawarra businesses</p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-3">
+        <span class="text-base font-black tracking-tight text-gray-700">Dhok Koon</span>
+        <span class="text-gray-300 select-none">·</span>
+        <span class="text-base font-black tracking-tight text-gray-700">Splash n' Dash</span>
+        <span class="text-gray-300 select-none">·</span>
+        <span class="text-base font-black tracking-tight text-gray-700">Alpha Barbershop</span>
+        <span class="text-gray-300 select-none">·</span>
+        <span class="text-base font-black tracking-tight text-gray-700">Crockers Boxing Gym</span>
+        <span class="text-gray-300 select-none">·</span>
+        <span class="text-base font-black tracking-tight text-gray-700">Me &amp; You Hair</span>
       </div>
+    </div>
+  </div>
 
-      <h2 class="promo-title">
-        10 Free Websites<br>
-        <span class="promo-accent">for Illawarra Businesses</span>
-      </h2>
+  <!-- ── 10 FREE WEBSITES ── -->
+  <section id="free-websites" class="bg-yellow py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-14">
 
-      <p class="promo-desc">
-        I'm personally selecting 10 local businesses to receive a fully custom, professional website — completely free.
-        I'll come to you in person, get to know your business, and take photos on the day.
-        No templates. No shortcuts. A real website built to bring in real customers.
-      </p>
+        <div class="max-w-2xl fade-up">
+          <div class="inline-flex items-center gap-2 bg-dark text-yellow text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8">
+            <span class="w-2 h-2 rounded-full bg-yellow animate-pulse"></span>
+            Applications Now Open
+          </div>
+          <h2 class="section-headline text-dark mb-6" style="font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 0.92; letter-spacing: -0.03em; font-weight: 900;">
+            10 Free<br>Websites.
+          </h2>
+          <p class="text-xl text-dark/70 max-w-lg leading-relaxed">
+            I'm personally selecting 10 local Illawarra businesses to receive a fully custom, professional website — completely free. I come to you in person, learn your business, and take the photos myself. No templates. No shortcuts.
+          </p>
+        </div>
 
-      <div class="promo-features">
-        <div class="promo-feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          In-person visit included
+        <div class="flex flex-col gap-5 lg:items-end fade-up">
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3 font-semibold text-dark">
+              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
+              In-person visit included
+            </div>
+            <div class="flex items-center gap-3 font-semibold text-dark">
+              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
+              We take the photos
+            </div>
+            <div class="flex items-center gap-3 font-semibold text-dark">
+              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
+              Custom-coded, not templated
+            </div>
+            <div class="flex items-center gap-3 font-semibold text-dark">
+              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
+              Illawarra businesses only
+            </div>
+          </div>
+          <a href="#apply" class="mt-4 inline-flex items-center gap-2 bg-dark text-yellow font-bold text-base px-8 py-4 rounded-full hover:bg-gray-800 transition-colors duration-150">
+            Apply for a Free Website →
+          </a>
+          <p class="text-sm text-dark/50 lg:text-right max-w-xs">Selected by Jesse personally — not first come, first served.</p>
         </div>
-        <div class="promo-feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-          We take the photos
-        </div>
-        <div class="promo-feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Custom-coded, not templated
-        </div>
-        <div class="promo-feature">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Illawarra businesses only
-        </div>
+
       </div>
-
-      <div class="promo-spots">
-        <div class="promo-spots-bar">
-          <div class="promo-spots-fill"></div>
-        </div>
-        <p class="promo-spots-text"><strong>Limited to 10 spots.</strong> Applications are reviewed and selected personally by Jesse — not first come, first served.</p>
-      </div>
-
-      <a href="#apply" class="btn btn-promo">
-        Apply for a Free Website
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
+  <!-- ── ABOUT / SERVICES ── -->
+  <section id="about" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
         <div class="fade-up">
-          <p class="section-label">What We Do</p>
-          <h2 class="section-title">Web solutions for the Illawarra's local businesses</h2>
-          <p class="section-sub">
-            Hawke Tech Solutions specialises in building high-quality websites for small and medium-sized businesses right here in the Illawarra. We take your business online — with a site that looks the part, ranks on Google, and actually works for your customers.
+          <p class="text-xs uppercase tracking-widest font-semibold text-gray-400 mb-4">What We Do</p>
+          <h2 class="section-headline text-dark mb-6">
+            Web solutions for<br>the Illawarra's<br>local businesses.
+          </h2>
+          <p class="text-gray-500 text-lg leading-relaxed mb-4">
+            Hawke Tech Solutions builds high-quality websites for small and medium-sized businesses right here in the Illawarra. We take your business online — with a site that looks the part, ranks on Google, and actually works for your customers.
           </p>
-          <p class="section-sub" style="margin-top:1rem;">
-            Every site is built from scratch — custom-coded, mobile-friendly, and optimised for search engines so your local customers can find you first.
+          <p class="text-gray-500 text-lg leading-relaxed">
+            Every site is built from scratch — custom-coded, mobile-friendly, and optimised for search engines so local customers find you first.
           </p>
+        </div>
 
-          <div class="about-services">
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
-              Custom Web Design
+        <div class="grid grid-cols-2 gap-4 fade-up">
+          <div class="bg-cream rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
             </div>
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-              Local SEO
+            <h3 class="font-bold text-dark mb-1">Custom Web Design</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Built from scratch, no templates</p>
+          </div>
+          <div class="bg-yellow rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             </div>
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              Mobile-First
+            <h3 class="font-bold text-dark mb-1">Local SEO</h3>
+            <p class="text-sm text-dark/60 leading-relaxed">Rank on Google from day one</p>
+          </div>
+          <div class="bg-cream rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
             </div>
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              Fast Load Times
+            <h3 class="font-bold text-dark mb-1">Mobile-First</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Perfect on every device</p>
+          </div>
+          <div class="bg-cream rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Domain & Hosting
+            <h3 class="font-bold text-dark mb-1">Fast Load Times</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Optimised performance</p>
+          </div>
+          <div class="bg-cream rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <div class="service-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Ongoing Support
+            <h3 class="font-bold text-dark mb-1">Domain &amp; Hosting</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Full setup, we handle it</p>
+          </div>
+          <div class="bg-cream rounded-3xl p-6">
+            <div class="w-10 h-10 bg-dark rounded-xl flex items-center justify-center mb-4">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
+            <h3 class="font-bold text-dark mb-1">Ongoing Support</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">Always here when you need us</p>
           </div>
         </div>
 
-        <div class="about-stats">
-          <div class="stat-card fade-up">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Custom-coded — no drag-and-drop builders, no templates. Every site is built specifically for your business.</div>
-          </div>
-          <div class="stat-card fade-up">
-            <div class="stat-num">Local</div>
-            <div class="stat-label">Based in the Illawarra. We understand the local market and build for local customers.</div>
-          </div>
-          <div class="stat-card fade-up">
-            <div class="stat-num">SEO</div>
-            <div class="stat-label">Every site is structured and optimised to rank on Google from day one.</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="work">
-    <div class="container">
-      <div class="portfolio-header">
-        <p class="section-label">Our Work</p>
-        <h2 class="section-title">Sites we've built</h2>
-        <p class="section-sub">
-          Real websites, built for real Illawarra businesses. Each one designed to attract customers and represent the brand professionally online.
-        </p>
+  <!-- ── QUOTE ── -->
+  <section class="bg-dark py-24 px-6">
+    <div class="max-w-6xl mx-auto fade-up">
+      <p class="text-xs uppercase tracking-widest font-semibold text-gray-600 mb-10">Our approach</p>
+      <blockquote class="quote-text text-white max-w-4xl mb-10">
+        "We come to your business in person, learn what makes it special, and build a website that actually reflects that."
+      </blockquote>
+      <p class="text-gray-500 text-base">— Jesse Hawke, Founder &nbsp;·&nbsp; Wollongong, NSW</p>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="bg-cream border-y border-gray-200 py-20 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 fade-up">
+      <div>
+        <div class="text-6xl font-black tracking-tight text-dark mb-3" style="letter-spacing: -0.04em;">100%</div>
+        <p class="text-gray-500 leading-relaxed">Custom-coded — no drag-and-drop builders, no templates. Built specifically for your business.</p>
+      </div>
+      <div>
+        <div class="text-6xl font-black tracking-tight text-dark mb-3" style="letter-spacing: -0.04em;">Local</div>
+        <p class="text-gray-500 leading-relaxed">Based in the Illawarra. We understand the local market and build for local customers.</p>
+      </div>
+      <div>
+        <div class="text-6xl font-black tracking-tight text-dark mb-3" style="letter-spacing: -0.04em;">SEO</div>
+        <p class="text-gray-500 leading-relaxed">Every site is structured and optimised to rank on Google from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PORTFOLIO ── -->
+  <section id="work" class="py-24 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div class="fade-up">
+          <p class="text-xs uppercase tracking-widest font-semibold text-gray-400 mb-4">Our Work</p>
+          <h2 class="section-headline text-dark">Sites we've built.</h2>
+        </div>
+        <p class="text-gray-500 max-w-sm text-lg leading-relaxed fade-up">Real websites, built for real Illawarra businesses.</p>
       </div>
 
-      <div class="portfolio-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
         <!-- Dhok Koon -->
-        <div class="project-card fade-up">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots">
-                <span class="dot-red"></span>
-                <span class="dot-yellow"></span>
-                <span class="dot-green"></span>
-              </div>
-              <div class="browser-url">dhokkoon.com</div>
+        <div class="group bg-cream rounded-3xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 fade-up">
+          <!-- Browser chrome -->
+          <div class="bg-[#E8E8E0] px-4 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+              <span class="w-3 h-3 rounded-full bg-green-400"></span>
             </div>
-            <div class="browser-preview">
-              <div class="site-preview preview-dhokkoon">
-                <div class="preview-overlay"></div>
-                <div class="preview-content">
-                  <div class="preview-nav">
-                    <span class="preview-logo-text">Dhok Koon | Thai Restaurant</span>
-                    <div class="preview-nav-links-row">
-                      <span class="preview-nav-link-item">Menu</span>
-                      <span class="preview-nav-link-item">Find Us</span>
-                      <span class="preview-nav-link-item">Reviews</span>
-                      <span class="preview-nav-link-item">Contact</span>
-                    </div>
-                  </div>
-                  <div class="preview-hero-content">
-                    <div class="preview-headline">Dhok Koon Thai<br>Restaurant</div>
-                    <div class="preview-sub">Authentic Thai cuisine in Fairy Meadow — generous portions, lunch &amp; dinner</div>
-                    <div class="preview-btn">View Our Menu</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="flex-1 bg-white/60 rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate">dhokkoon.com</div>
           </div>
-          <div class="project-info">
-            <div class="project-tags">
-              <span class="tag">Restaurant</span>
-              <span class="tag">Local SEO</span>
-              <span class="tag">Hospitality</span>
+          <!-- Preview -->
+          <div class="h-52 bg-cover bg-top relative" style="background-image: url('https://dhokkoon.com/dhokoon-cover-tables.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <!-- Info -->
+          <div class="p-6">
+            <div class="flex gap-2 flex-wrap mb-3">
+              <span class="text-xs font-semibold bg-dark text-white px-3 py-1 rounded-full">Restaurant</span>
+              <span class="text-xs font-semibold bg-dark/10 text-dark px-3 py-1 rounded-full">Local SEO</span>
+              <span class="text-xs font-semibold bg-dark/10 text-dark px-3 py-1 rounded-full">Hospitality</span>
             </div>
-            <h3 class="project-name">Dhok Koon Thai Restaurant</h3>
-            <p class="project-desc">
-              A full website for Fairy Meadow's favourite Thai restaurant. Built to showcase the menu, drive dine-in and takeaway bookings, and rank locally for Thai food searches across Wollongong and the Illawarra.
-            </p>
-            <a href="https://dhokkoon.com" target="_blank" rel="noopener" class="project-link">
+            <h3 class="text-xl font-black text-dark mb-2 tracking-tight">Dhok Koon Thai Restaurant</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">A full website for Fairy Meadow's favourite Thai restaurant. Built to showcase the menu, drive bookings, and rank locally for Thai food searches.</p>
+            <a href="https://dhokkoon.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-bold text-dark hover:gap-3 transition-all duration-200">
               Visit dhokkoon.com
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -1219,166 +382,152 @@
         </div>
 
         <!-- Splash n Dash -->
-        <div class="project-card fade-up">
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <div class="browser-dots">
-                <span class="dot-red"></span>
-                <span class="dot-yellow"></span>
-                <span class="dot-green"></span>
-              </div>
-              <div class="browser-url">splashndashmd.com</div>
+        <div class="group bg-cream rounded-3xl overflow-hidden hover:-translate-y-1 transition-transform duration-300 fade-up">
+          <div class="bg-[#E8E8E0] px-4 py-3 flex items-center gap-3">
+            <div class="flex gap-1.5">
+              <span class="w-3 h-3 rounded-full bg-red-400"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+              <span class="w-3 h-3 rounded-full bg-green-400"></span>
             </div>
-            <div class="browser-preview">
-              <div class="site-preview preview-snd">
-                <div class="preview-overlay"></div>
-                <div class="preview-content">
-                  <div class="preview-nav">
-                    <span class="preview-logo-text">Splash n' Dash</span>
-                    <div class="preview-nav-links-row">
-                      <span class="preview-nav-link-item">Packages</span>
-                      <span class="preview-nav-link-item">Gallery</span>
-                      <span class="preview-nav-link-item">Contact</span>
-                    </div>
-                  </div>
-                  <div class="preview-hero-content">
-                    <div class="preview-badge">✦ We Come to You — Illawarra &amp; South Coast</div>
-                    <div class="preview-headline">Your Car,<br><em>Detailed.</em><br>Your Way.</div>
-                    <div class="preview-sub">Mobile detailing across Wollongong, the Illawarra and South Coast</div>
-                    <div class="preview-btn">Call 0423 628 175</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="flex-1 bg-white/60 rounded-md px-3 py-1 text-xs text-gray-400 font-mono truncate">splashndashmd.com</div>
           </div>
-          <div class="project-info">
-            <div class="project-tags">
-              <span class="tag">Auto Services</span>
-              <span class="tag">Mobile Business</span>
-              <span class="tag">Local SEO</span>
+          <div class="h-52 bg-cover bg-top relative" style="background-image: url('https://splashndashmd.com/splashndash-hero.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex gap-2 flex-wrap mb-3">
+              <span class="text-xs font-semibold bg-dark text-white px-3 py-1 rounded-full">Auto Services</span>
+              <span class="text-xs font-semibold bg-dark/10 text-dark px-3 py-1 rounded-full">Mobile Business</span>
+              <span class="text-xs font-semibold bg-dark/10 text-dark px-3 py-1 rounded-full">Local SEO</span>
             </div>
-            <h3 class="project-name">Splash n' Dash Mobile Detailing</h3>
-            <p class="project-desc">
-              A professional site for a mobile car detailing company covering Wollongong, the Illawarra, and the South Coast. Designed to convert visitors into bookings and rank for local detailing searches.
-            </p>
-            <a href="https://splashndashmd.com" target="_blank" rel="noopener" class="project-link">
+            <h3 class="text-xl font-black text-dark mb-2 tracking-tight">Splash n' Dash Mobile Detailing</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">A professional site for a mobile car detailing company covering Wollongong, the Illawarra, and the South Coast. Built to convert visitors into bookings.</p>
+            <a href="https://splashndashmd.com" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-bold text-dark hover:gap-3 transition-all duration-200">
               Visit splashndashmd.com
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
         </div>
 
-      </div><!-- /portfolio-grid -->
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <div>
-          <p class="section-label">Get In Touch</p>
-          <h2 class="section-title">Ready to get your business online?</h2>
-          <p class="section-sub">
-            Whether you need a brand new site or want to upgrade an existing one — get in touch and we'll talk through what's right for your business.
-          </p>
-
-          <div class="contact-details fade-up">
-            <a href="tel:0410640220" class="contact-item">
-              <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.8 5.8l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.22 16z"/></svg>
-              </div>
-              <div>
-                <div class="contact-item-label">Phone</div>
-                <div class="contact-item-value">0410 640 220</div>
-              </div>
-            </a>
-
-            <a href="mailto:jhawke2546@gmail.com" class="contact-item">
-              <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </div>
-              <div>
-                <div class="contact-item-label">Email</div>
-                <div class="contact-item-value">jhawke2546@gmail.com</div>
-              </div>
-            </a>
-
-            <div class="contact-item" style="cursor:default;">
-              <div class="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </div>
-              <div>
-                <div class="contact-item-label">Service Area</div>
-                <div class="contact-item-value">Illawarra &amp; Wollongong Region</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form-side fade-up">
-          <h3>Send a message</h3>
-          <p>Tell us a bit about your business and what you're after — we'll get back to you quickly.</p>
-
-          <form action="mailto:jhawke2546@gmail.com" method="post" enctype="text/plain">
-            <div class="form-row">
-              <div class="form-field">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="First Name" placeholder="John" required>
-              </div>
-              <div class="form-field">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="Last Name" placeholder="Smith">
-              </div>
-            </div>
-            <div class="form-field">
-              <label for="business">Business Name</label>
-              <input type="text" id="business" name="Business" placeholder="Your Business">
-            </div>
-            <div class="form-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="Email" placeholder="you@example.com" required>
-            </div>
-            <div class="form-field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="Phone" placeholder="04xx xxx xxx">
-            </div>
-            <div class="form-field">
-              <label for="service">What are you after?</label>
-              <select id="service" name="Service">
-                <option value="">Select an option</option>
-                <option>Brand new website</option>
-                <option>Redesign existing site</option>
-                <option>SEO / Google ranking help</option>
-                <option>Not sure — just want to chat</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="message">Message</label>
-              <textarea id="message" name="Message" placeholder="Tell us about your business..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">
-              Send Message
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">
-      <span>Hawke Tech</span><span style="color:var(--muted);"> Solutions</span>
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="py-24 px-6 bg-cream">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <div class="fade-up">
+        <p class="text-xs uppercase tracking-widest font-semibold text-gray-400 mb-4">Get In Touch</p>
+        <h2 class="section-headline text-dark mb-6">Ready to get your business online?</h2>
+        <p class="text-gray-500 text-lg leading-relaxed mb-10">
+          Whether you need a brand new site or want to upgrade an existing one — get in touch and we'll talk through what's right for your business.
+        </p>
+
+        <div class="flex flex-col gap-3">
+          <a href="tel:0410640220" class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100 hover:border-dark transition-colors duration-150 group">
+            <div class="w-11 h-11 rounded-xl bg-dark flex items-center justify-center flex-shrink-0">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.8 5.8l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.22 16z"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">Phone</div>
+              <div class="font-semibold text-dark">0410 640 220</div>
+            </div>
+          </a>
+          <a href="mailto:jhawke2546@gmail.com" class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100 hover:border-dark transition-colors duration-150 group">
+            <div class="w-11 h-11 rounded-xl bg-dark flex items-center justify-center flex-shrink-0">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">Email</div>
+              <div class="font-semibold text-dark">jhawke2546@gmail.com</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100">
+            <div class="w-11 h-11 rounded-xl bg-dark flex items-center justify-center flex-shrink-0">
+              <svg class="text-yellow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-0.5">Service Area</div>
+              <div class="font-semibold text-dark">Illawarra &amp; Wollongong Region</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm fade-up">
+        <h3 class="text-xl font-black text-dark mb-1 tracking-tight">Send a message</h3>
+        <p class="text-gray-500 text-sm mb-6 leading-relaxed">Tell us about your business and what you're after — we'll get back to you quickly.</p>
+
+        <form action="mailto:jhawke2546@gmail.com" method="post" enctype="text/plain" class="flex flex-col gap-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">First Name</label>
+              <input type="text" name="First Name" placeholder="John" required class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Last Name</label>
+              <input type="text" name="Last Name" placeholder="Smith" class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Business Name</label>
+            <input type="text" name="Business" placeholder="Your Business" class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Email</label>
+            <input type="email" name="Email" placeholder="you@example.com" required class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Phone</label>
+            <input type="tel" name="Phone" placeholder="04xx xxx xxx" class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">What are you after?</label>
+            <select name="Service" class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150">
+              <option value="">Select an option</option>
+              <option>Brand new website</option>
+              <option>Redesign existing site</option>
+              <option>SEO / Google ranking help</option>
+              <option>Not sure — just want to chat</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">Message</label>
+            <textarea name="Message" placeholder="Tell us about your business..." rows="4" class="w-full bg-cream border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-dark transition-colors duration-150 resize-none"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-dark text-white font-bold py-4 rounded-xl hover:bg-gray-800 transition-colors duration-150 flex items-center justify-center gap-2">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+      </div>
+
     </div>
-    <nav class="footer-nav">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#free-websites" class="footer-free">Free Website</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <p>Web solutions for local businesses in the Illawarra &mdash; &copy; <span id="yr"></span> Hawke Tech Solutions</p>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="bg-dark text-white py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-10 mb-12">
+        <div>
+          <div class="font-black text-2xl tracking-tight mb-2">
+            Hawke<span class="text-yellow">Tech</span> Solutions
+          </div>
+          <p class="text-gray-500 text-sm">Web solutions for the Illawarra.</p>
+        </div>
+        <nav class="flex flex-wrap gap-x-8 gap-y-3">
+          <a href="#about" class="text-gray-400 text-sm hover:text-white transition-colors duration-150">About</a>
+          <a href="#work" class="text-gray-400 text-sm hover:text-white transition-colors duration-150">Work</a>
+          <a href="#free-websites" class="text-yellow text-sm font-semibold hover:text-white transition-colors duration-150">Free Website</a>
+          <a href="#contact" class="text-gray-400 text-sm hover:text-white transition-colors duration-150">Contact</a>
+        </nav>
+      </div>
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-gray-600 text-sm">&copy; <span id="yr"></span> Hawke Tech Solutions &nbsp;·&nbsp; Wollongong, Illawarra NSW</p>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -1386,9 +535,9 @@
 
     // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
-    const navLinks = document.querySelector('.nav-links');
-    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+    const menu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
     // Scroll fade-in
     const observer = new IntersectionObserver((entries) => {
@@ -1398,7 +547,7 @@
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 
