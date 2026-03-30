@@ -147,13 +147,6 @@
   <section class="pt-36 pb-20 px-6">
     <div class="max-w-6xl mx-auto">
 
-      <!-- Promo announcement -->
-      <a href="#free-websites" class="inline-flex items-center gap-2.5 bg-yellow text-dark text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-10 hover:bg-yellow/80 transition-colors duration-150">
-        <span class="w-2 h-2 rounded-full bg-dark animate-pulse"></span>
-        10 Free Websites — Applications Now Open
-        <span class="text-dark/50">→</span>
-      </a>
-
       <h1 class="hero-headline text-dark mb-8 max-w-4xl">
         Websites that<br>
         <em class="not-italic bg-yellow px-3 rounded-lg">work</em> for<br>
@@ -183,12 +176,6 @@
         <span class="text-base font-black tracking-tight text-gray-700">Dhok Koon</span>
         <span class="text-gray-300 select-none">·</span>
         <span class="text-base font-black tracking-tight text-gray-700">Splash n' Dash</span>
-        <span class="text-gray-300 select-none">·</span>
-        <span class="text-base font-black tracking-tight text-gray-700">Alpha Barbershop</span>
-        <span class="text-gray-300 select-none">·</span>
-        <span class="text-base font-black tracking-tight text-gray-700">Crockers Boxing Gym</span>
-        <span class="text-gray-300 select-none">·</span>
-        <span class="text-base font-black tracking-tight text-gray-700">Me &amp; You Hair</span>
       </div>
     </div>
   </div>
@@ -207,7 +194,7 @@
             10 Free<br>Websites.
           </h2>
           <p class="text-xl text-dark/70 max-w-lg leading-relaxed">
-            I'm personally selecting 10 local Illawarra businesses to receive a fully custom, professional website — completely free. I come to you in person, learn your business, and take the photos myself. No templates. No shortcuts.
+            I'm personally selecting 10 local Illawarra businesses to receive a fully custom, professional website — completely free. No templates. No shortcuts. A real website built to bring in real customers.
           </p>
         </div>
 
@@ -215,15 +202,11 @@
           <div class="flex flex-col gap-3">
             <div class="flex items-center gap-3 font-semibold text-dark">
               <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
-              In-person visit included
-            </div>
-            <div class="flex items-center gap-3 font-semibold text-dark">
-              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
-              We take the photos
-            </div>
-            <div class="flex items-center gap-3 font-semibold text-dark">
-              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
               Custom-coded, not templated
+            </div>
+            <div class="flex items-center gap-3 font-semibold text-dark">
+              <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
+              Mobile-friendly &amp; SEO-optimised
             </div>
             <div class="flex items-center gap-3 font-semibold text-dark">
               <span class="w-6 h-6 rounded-full bg-dark text-yellow text-xs flex items-center justify-center font-black flex-shrink-0">✓</span>
@@ -508,8 +491,26 @@
     </div>
   </footer>
 
+  <!-- ── FLOATING FREE WEBSITE CTA ── -->
+  <div id="floating-cta" class="fixed bottom-6 left-1/2 z-50 w-[calc(100%-3rem)] max-w-lg" style="transform: translateX(-50%);">
+    <div class="bg-dark text-white rounded-2xl shadow-2xl px-5 py-4 flex items-center gap-4">
+      <div class="flex-1 min-w-0">
+        <p class="text-yellow font-black text-sm leading-tight">Get a FREE website</p>
+        <p class="text-white/60 text-xs mt-0.5 truncate">Limited to 10 Illawarra businesses — apply now</p>
+      </div>
+      <a href="tel:0410640220" class="flex-shrink-0 bg-yellow text-dark font-black text-sm px-4 py-2.5 rounded-xl hover:bg-yellow/80 transition-colors duration-150 whitespace-nowrap">
+        Call or text Jesse
+      </a>
+      <button id="close-cta" class="flex-shrink-0 text-white/40 hover:text-white transition-colors duration-150 text-lg leading-none" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+    // Dismiss floating CTA
+    document.getElementById('close-cta').addEventListener('click', () => {
+      document.getElementById('floating-cta').style.display = 'none';
+    });
 
     // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
