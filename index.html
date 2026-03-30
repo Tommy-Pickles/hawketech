@@ -345,7 +345,7 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 2rem;
     }
 
@@ -878,9 +878,106 @@
       box-shadow: 0 0 48px rgba(59,130,246,0.55);
     }
 
+    /* ── MOBILE NAV ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0.4rem 0.5rem;
+      line-height: 0;
+      transition: border-color 0.2s;
+    }
+    .nav-toggle:hover { border-color: rgba(255,255,255,0.2); }
+
+    /* ── NAV FREE WEBSITE LINK ── */
+    .nav-free {
+      color: #86efac !important;
+      font-weight: 600 !important;
+    }
+    .nav-free:hover { color: #fff !important; }
+
+    /* ── HERO PROMO ANNOUNCEMENT ── */
+    .hero-promo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.28);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #86efac;
+      text-decoration: none;
+      margin-bottom: 1.25rem;
+      transition: background 0.2s, border-color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .hero-promo-link:hover {
+      background: rgba(34,197,94,0.15);
+      border-color: rgba(34,197,94,0.5);
+    }
+    .hero-promo-link svg { flex-shrink: 0; }
+    .hero-promo-arrow {
+      color: rgba(134,239,172,0.6);
+      font-size: 0.85rem;
+    }
+
+    /* ── SCROLL FADE-IN ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── FOOTER LINKS ── */
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .footer-nav a {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--text); }
+    .footer-nav a.footer-free { color: #86efac; }
+    .footer-nav a.footer-free:hover { color: #fff; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: rgba(8,11,18,0.97);
+        backdrop-filter: blur(16px);
+        padding: 1.75rem 2rem 2rem;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border); }
+      .nav-links li:last-child { border-bottom: none; }
+      .nav-links a {
+        display: block;
+        padding: 0.9rem 0;
+        font-size: 1rem;
+      }
+      .nav-toggle { display: block; }
       .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .portfolio-grid { grid-template-columns: 1fr; }
       .about-services { grid-template-columns: 1fr; }
@@ -903,7 +1000,15 @@
       <li><a href="#about">About</a></li>
       <li><a href="#work">Work</a></li>
       <li><a href="#contact">Contact</a></li>
+      <li><a href="#free-websites" class="nav-free">Free Website</a></li>
     </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -911,6 +1016,11 @@
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
     <div class="hero-inner">
+      <a href="#free-websites" class="hero-promo-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 12v10H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        10 Free Websites — Now Accepting Applications
+        <span class="hero-promo-arrow">→</span>
+      </a>
       <div class="hero-eyebrow">Illawarra Web Solutions</div>
       <h1>
         <span class="hawke">Hawke</span><span class="tech"> Tech</span>
@@ -989,7 +1099,7 @@
   <section id="about">
     <div class="container">
       <div class="about-grid">
-        <div>
+        <div class="fade-up">
           <p class="section-label">What We Do</p>
           <h2 class="section-title">Web solutions for the Illawarra's local businesses</h2>
           <p class="section-sub">
@@ -1028,15 +1138,15 @@
         </div>
 
         <div class="about-stats">
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">100%</div>
             <div class="stat-label">Custom-coded — no drag-and-drop builders, no templates. Every site is built specifically for your business.</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">Local</div>
             <div class="stat-label">Based in the Illawarra. We understand the local market and build for local customers.</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card fade-up">
             <div class="stat-num">SEO</div>
             <div class="stat-label">Every site is structured and optimised to rank on Google from day one.</div>
           </div>
@@ -1059,7 +1169,7 @@
       <div class="portfolio-grid">
 
         <!-- Dhok Koon -->
-        <div class="project-card">
+        <div class="project-card fade-up">
           <div class="browser-frame">
             <div class="browser-bar">
               <div class="browser-dots">
@@ -1109,7 +1219,7 @@
         </div>
 
         <!-- Splash n Dash -->
-        <div class="project-card">
+        <div class="project-card fade-up">
           <div class="browser-frame">
             <div class="browser-bar">
               <div class="browser-dots">
@@ -1173,7 +1283,7 @@
             Whether you need a brand new site or want to upgrade an existing one — get in touch and we'll talk through what's right for your business.
           </p>
 
-          <div class="contact-details">
+          <div class="contact-details fade-up">
             <a href="tel:0410640220" class="contact-item">
               <div class="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.5a16 16 0 0 0 5.8 5.8l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.22 16z"/></svg>
@@ -1206,7 +1316,7 @@
           </div>
         </div>
 
-        <div class="contact-form-side">
+        <div class="contact-form-side fade-up">
           <h3>Send a message</h3>
           <p>Tell us a bit about your business and what you're after — we'll get back to you quickly.</p>
 
@@ -1262,11 +1372,34 @@
     <div class="footer-logo">
       <span>Hawke Tech</span><span style="color:var(--muted);"> Solutions</span>
     </div>
-    <p style="margin-top:0.5rem;">Web solutions for local businesses in the Illawarra &mdash; &copy; <span id="yr"></span> Hawke Tech Solutions</p>
+    <nav class="footer-nav">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#free-websites" class="footer-free">Free Website</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p>Web solutions for local businesses in the Illawarra &mdash; &copy; <span id="yr"></span> Hawke Tech Solutions</p>
   </footer>
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 
 </body>
