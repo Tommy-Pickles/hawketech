@@ -4,25 +4,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>10 Free Websites for Illawarra Businesses | Hawke Tech Solutions</title>
-  <meta name="description" content="Hawke Tech Solutions is giving away 10 free business website builds to local Illawarra businesses. Apply for a high-converting, mobile-first, SEO-ready website built by a local Wollongong web designer.">
+  <meta name="description" content="Hawke Tech Solutions is giving away 10 free website builds for Illawarra businesses. Apply for a mobile-first, SEO-ready site by a Wollongong web designer.">
   <meta name="keywords" content="free business website Illawarra, business websites Illawarra, web design Wollongong, website design Illawarra, small business website Wollongong, Illawarra web developer, Hawke Tech Solutions">
-  <link rel="canonical" href="https://hawketechsolutions.com/">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hawke.solutions/">
+  <link rel="alternate" href="https://hawke.solutions/" hreflang="en-AU">
+  <link rel="alternate" href="https://hawke.solutions/" hreflang="x-default">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="geo.region" content="AU-NSW">
   <meta name="geo.placename" content="Illawarra, Wollongong">
   <meta name="author" content="Hawke Tech Solutions">
+  <meta name="application-name" content="Hawke Tech Solutions">
+  <meta name="apple-mobile-web-app-title" content="Hawke Tech Solutions">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="10 Free Websites for Illawarra Businesses">
   <meta property="og:description" content="Apply for one of 10 free business website builds from Hawke Tech Solutions. Built for Illawarra businesses that need more calls, bookings, and enquiries.">
-  <meta property="og:url" content="https://hawketechsolutions.com/">
+  <meta property="og:url" content="https://hawke.solutions/">
   <meta property="og:site_name" content="Hawke Tech Solutions">
   <meta property="og:locale" content="en_AU">
-  <meta property="og:image" content="https://hawketechsolutions.com/logos/logo-base-nobgwhite.png">
+  <meta property="og:image" content="https://hawke.solutions/logos/logo-base-nobgwhite.png">
+  <meta property="og:image:secure_url" content="https://hawke.solutions/logos/logo-base-nobgwhite.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1080">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Hawke Tech Solutions logo">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="10 Free Websites for Illawarra Businesses">
   <meta name="twitter:description" content="A local Wollongong web design offer for Illawarra businesses ready for a better website.">
+  <meta name="twitter:image" content="https://hawke.solutions/logos/logo-base-nobgwhite.png">
+  <meta name="twitter:image:alt" content="Hawke Tech Solutions logo">
   <meta name="theme-color" content="#0D1110">
+  <link rel="icon" type="image/png" href="/logos/logo-base-nobgwhite.png">
+  <link rel="apple-touch-icon" href="/logos/logo-base-nobgwhite.png">
 
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JGQ82MK4T"></script>
   <script>
@@ -59,6 +73,7 @@
       }
     };
   </script>
+  <script src="lead-config.js"></script>
   <style>
     :root {
       --ink: #0D1110;
@@ -935,6 +950,132 @@
       font-weight: 700;
     }
 
+    .form-status {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .form-status[data-state="pending"] {
+      color: var(--mint);
+    }
+
+    .form-status[data-state="success"] {
+      color: var(--acid);
+    }
+
+    .form-status[data-state="error"] {
+      color: var(--lemon);
+    }
+
+    .btn[disabled] {
+      cursor: wait;
+      transform: none;
+      box-shadow: none;
+      opacity: 0.78;
+    }
+
+    .lead-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 140;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: min(calc(100% - 28px), 430px);
+      padding: 16px 18px;
+      border: 1px solid rgba(247, 255, 245, 0.14);
+      border-radius: 8px;
+      background: rgba(8, 12, 11, 0.96);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.4), 0 0 28px rgba(156, 255, 26, 0.08);
+      backdrop-filter: blur(16px);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 24px);
+      transition-property: opacity, transform;
+      transition-duration: 220ms;
+      transition-timing-function: cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .lead-toast.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, 0);
+    }
+
+    .lead-toast[data-state="success"] {
+      border-color: rgba(156, 255, 26, 0.28);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.4), 0 0 34px rgba(156, 255, 26, 0.12);
+    }
+
+    .lead-toast[data-state="error"] {
+      border-color: rgba(246, 216, 77, 0.28);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.4), 0 0 34px rgba(246, 216, 77, 0.1);
+    }
+
+    .lead-toast-mark {
+      flex: 0 0 auto;
+      width: 12px;
+      height: 12px;
+      margin-top: 6px;
+      border-radius: 999px;
+      background: var(--acid);
+      box-shadow: 0 0 18px rgba(156, 255, 26, 0.52);
+    }
+
+    .lead-toast[data-state="error"] .lead-toast-mark {
+      background: var(--lemon);
+      box-shadow: 0 0 18px rgba(246, 216, 77, 0.4);
+    }
+
+    .lead-toast-copy {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .lead-toast-title {
+      margin: 0;
+      color: var(--milk);
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .lead-toast-message {
+      margin: 6px 0 0;
+      color: rgba(247, 255, 245, 0.74);
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .lead-toast-close {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border: 1px solid rgba(247, 255, 245, 0.14);
+      border-radius: 8px;
+      background: rgba(247, 255, 245, 0.04);
+      color: rgba(247, 255, 245, 0.74);
+      cursor: pointer;
+    }
+
+    .lead-toast-close:hover {
+      color: var(--acid);
+      border-color: rgba(156, 255, 26, 0.4);
+      transform: translateY(-1px);
+    }
+
     .site-footer {
       padding: 44px 0;
       background: #080B0A;
@@ -1203,31 +1344,86 @@
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "@id": "https://hawketechsolutions.com/#business",
+        "@id": "https://hawke.solutions/#business",
         "name": "Hawke Tech Solutions",
-        "url": "https://hawketechsolutions.com/",
-        "logo": "https://hawketechsolutions.com/logos/logo-base-nobgwhite.png",
-        "image": "https://hawketechsolutions.com/logos/logo-base-nobgwhite.png",
+        "alternateName": "Hawke Tech",
+        "url": "https://hawke.solutions/",
+        "logo": {"@id": "https://hawke.solutions/#logo"},
+        "image": {"@id": "https://hawke.solutions/#logo"},
         "telephone": "+61410640220",
         "email": "jesse@hawke.solutions",
         "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Wollongong",
+          "addressRegion": "NSW",
+          "addressCountry": "AU"
+        },
         "areaServed": [
           {"@type": "AdministrativeArea", "name": "Illawarra"},
           {"@type": "City", "name": "Wollongong"},
           {"@type": "AdministrativeArea", "name": "South Coast NSW"}
         ],
         "description": "Business website design, web development, landing pages, and local SEO for Illawarra businesses.",
-        "serviceType": ["Business Website Design", "Website Development", "Landing Page Design", "Local SEO"]
+        "serviceType": ["Business Website Design", "Website Development", "Landing Page Design", "Local SEO"],
+        "knowsAbout": ["web design Wollongong", "business websites Illawarra", "local SEO", "landing page design", "mobile-first websites"],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+61410640220",
+          "email": "jesse@hawke.solutions",
+          "contactType": "sales",
+          "areaServed": "AU-NSW",
+          "availableLanguage": "English"
+        },
+        "makesOffer": {"@id": "https://hawke.solutions/#free-website-offer"}
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://hawke.solutions/#logo",
+        "url": "https://hawke.solutions/logos/logo-base-nobgwhite.png",
+        "contentUrl": "https://hawke.solutions/logos/logo-base-nobgwhite.png",
+        "width": 1080,
+        "height": 1080,
+        "caption": "Hawke Tech Solutions logo"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hawke.solutions/#website",
+        "url": "https://hawke.solutions/",
+        "name": "Hawke Tech Solutions",
+        "publisher": {"@id": "https://hawke.solutions/#business"},
+        "inLanguage": "en-AU"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://hawke.solutions/#webpage",
+        "url": "https://hawke.solutions/",
+        "name": "10 Free Websites for Illawarra Businesses",
+        "description": "Hawke Tech Solutions is giving away 10 free business website builds for Illawarra businesses.",
+        "isPartOf": {"@id": "https://hawke.solutions/#website"},
+        "about": {"@id": "https://hawke.solutions/#business"},
+        "mainEntity": {"@id": "https://hawke.solutions/#free-website-offer"},
+        "primaryImageOfPage": {"@id": "https://hawke.solutions/#logo"},
+        "dateModified": "2026-04-22",
+        "inLanguage": "en-AU"
       },
       {
         "@type": "Offer",
-        "@id": "https://hawketechsolutions.com/#free-website-offer",
+        "@id": "https://hawke.solutions/#free-website-offer",
         "name": "10 free website builds for Illawarra businesses",
+        "url": "https://hawke.solutions/#apply",
         "price": "0",
         "priceCurrency": "AUD",
         "availability": "https://schema.org/LimitedAvailability",
         "eligibleRegion": {"@type": "AdministrativeArea", "name": "Illawarra"},
-        "seller": {"@id": "https://hawketechsolutions.com/#business"},
+        "seller": {"@id": "https://hawke.solutions/#business"},
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Business website design and build",
+          "serviceType": "Website design",
+          "provider": {"@id": "https://hawke.solutions/#business"},
+          "areaServed": {"@type": "AdministrativeArea", "name": "Illawarra"}
+        },
         "description": "A limited campaign offering 10 selected Illawarra businesses a free website design and build. Optional domain, hosting, paid integrations, and ongoing support costs are quoted separately before approval."
       }
     ]
@@ -1239,7 +1435,7 @@
     <div class="nav-shell">
       <a href="#top" class="brand-mark" aria-label="Hawke Tech Solutions home">
         <span class="brand-logo-frame">
-          <img class="brand-logo" src="logos/logo-base-nobgwhite.png" alt="Hawke Tech Solutions" width="132" height="42">
+          <img class="brand-logo" src="logos/logo-base-nobgwhite.png" alt="Hawke Tech Solutions" width="132" height="42" decoding="async" fetchpriority="high">
         </span>
       </a>
 
@@ -1387,7 +1583,7 @@
                   <span class="browser-url">dhokkoon.com</span>
                 </div>
                 <div class="demo-image">
-                  <img src="https://dhokkoon.com/dhokoon-cover-tables.jpg" alt="Dhok Koon Thai website preview" loading="lazy">
+                  <img src="https://dhokkoon.com/dhokoon-cover-tables.jpg" alt="Dhok Koon Thai restaurant website preview" width="1920" height="1080" loading="lazy" decoding="async">
                   <div class="demo-caption">
                     <span>Restaurant website</span>
                     <h3>Dhok Koon Thai</h3>
@@ -1403,7 +1599,7 @@
                   <span class="browser-url">splashndashmd.com</span>
                 </div>
                 <div class="demo-image">
-                  <img src="https://splashndashmd.com/splashndash-hero.jpg" alt="Splash n' Dash Mobile Detailing website preview" loading="lazy">
+                  <img src="https://splashndashmd.com/splashndash-hero.jpg" alt="Splash n' Dash mobile detailing website preview" width="1542" height="640" loading="lazy" decoding="async">
                   <div class="demo-caption">
                     <span>Service business website</span>
                     <h3>Splash n' Dash</h3>
@@ -1434,26 +1630,39 @@
         </div>
 
         <div class="form-wrap reveal pop-right pop-delay-2">
-          <form id="leadForm" action="mailto:jesse@hawke.solutions" method="post" enctype="text/plain">
-            <input type="hidden" name="Campaign" value="10 free Illawarra websites">
+          <form id="leadForm" method="post" target="leadSubmitFrame" accept-charset="UTF-8">
+            <input type="hidden" name="campaign" value="10 free Illawarra websites">
+            <input type="hidden" id="submittedAt" name="submitted_at" value="">
+            <input type="hidden" id="pageUrl" name="page_url" value="">
+            <input type="hidden" id="referrer" name="referrer" value="">
+            <input type="hidden" id="utmSource" name="utm_source" value="">
+            <input type="hidden" id="utmMedium" name="utm_medium" value="">
+            <input type="hidden" id="utmCampaign" name="utm_campaign" value="">
+            <input type="hidden" id="utmContent" name="utm_content" value="">
+            <input type="hidden" id="utmTerm" name="utm_term" value="">
+            <input type="hidden" id="fbclid" name="fbclid" value="">
+            <input type="hidden" id="gclid" name="gclid" value="">
+            <input type="hidden" id="leadId" name="lead_id" value="">
             <div>
               <label for="name">Name</label>
-              <input id="name" name="Name" type="text" placeholder="Your name" autocomplete="name" required>
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
             </div>
             <div>
               <label for="phone">Number</label>
-              <input id="phone" name="Phone" type="tel" placeholder="04xx xxx xxx" autocomplete="tel" required>
+              <input id="phone" name="phone" type="tel" placeholder="04xx xxx xxx" autocomplete="tel" required>
             </div>
             <div>
               <label for="business">Business</label>
-              <input id="business" name="Business" type="text" placeholder="Business name" autocomplete="organization" required>
+              <input id="business" name="business" type="text" placeholder="Business name" autocomplete="organization" required>
             </div>
-            <button type="submit" class="btn btn-primary w-full mt-1">
+            <button id="leadSubmitButton" type="submit" class="btn btn-primary w-full mt-1">
               Send my details
               <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
             </button>
-            <p class="form-note">Opens a pre-filled email to Jesse. Faster: 0410 640 220.</p>
+            <p id="formNote" class="form-note">Direct lead capture is being connected. Faster: 0410 640 220.</p>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
           </form>
+          <iframe id="leadSubmitFrame" name="leadSubmitFrame" title="Lead submission" hidden></iframe>
         </div>
       </div>
     </section>
@@ -1464,7 +1673,7 @@
       <div>
         <a href="#top" class="brand-mark">
           <span class="brand-logo-frame">
-            <img class="brand-logo" src="logos/logo-base-nobgwhite.png" alt="" width="132" height="42">
+            <img class="brand-logo" src="logos/logo-base-nobgwhite.png" alt="" width="132" height="42" loading="lazy" decoding="async">
           </span>
           <span class="brand-word">
             <span class="brand-word-main">Tech Solutions</span>
@@ -1480,6 +1689,17 @@
       </div>
     </div>
   </footer>
+
+  <div id="leadToast" class="lead-toast" data-state="success" aria-hidden="true">
+    <span class="lead-toast-mark" aria-hidden="true"></span>
+    <div class="lead-toast-copy">
+      <p id="leadToastTitle" class="lead-toast-title">Thanks</p>
+      <p id="leadToastMessage" class="lead-toast-message">I've got your details and I'll be in touch soon.</p>
+    </div>
+    <button id="leadToastClose" class="lead-toast-close" type="button" aria-label="Close message">
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 6 12 12"/><path d="M18 6 6 18"/></svg>
+    </button>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1499,7 +1719,46 @@
 
     document.body.classList.add('motion-ready');
 
+    const leadConfig = window.HTS_LEAD_CONFIG || {};
     const leadForm = document.getElementById('leadForm');
+    const leadSubmitButton = document.getElementById('leadSubmitButton');
+    const leadSubmitFrame = document.getElementById('leadSubmitFrame');
+    const formNote = document.getElementById('formNote');
+    const formStatus = document.getElementById('formStatus');
+    const leadToast = document.getElementById('leadToast');
+    const leadToastTitle = document.getElementById('leadToastTitle');
+    const leadToastMessage = document.getElementById('leadToastMessage');
+    const leadToastClose = document.getElementById('leadToastClose');
+    const submitButtonLabel = leadSubmitButton.innerHTML;
+    const fallbackEmail = leadConfig.fallbackEmail || 'jesse@hawke.solutions';
+    const endpoint = leadConfig.endpoint || '';
+    const directCaptureEnabled = Boolean(endpoint);
+    const usesRemoteLeadEndpoint = /^https:\/\/script\.google\.com\/macros\/s\//.test(endpoint);
+    let submissionPending = false;
+    let submissionTimeoutId = null;
+    let toastTimeoutId = null;
+    let allowFrameLoadSuccess = false;
+
+    const setFormStatus = (state, message) => {
+      formStatus.dataset.state = state || '';
+      formStatus.textContent = message || '';
+    };
+
+    const hideLeadToast = () => {
+      leadToast.classList.remove('visible');
+      leadToast.setAttribute('aria-hidden', 'true');
+    };
+
+    const showLeadToast = (title, message, state = 'success') => {
+      window.clearTimeout(toastTimeoutId);
+      leadToast.dataset.state = state;
+      leadToastTitle.textContent = title;
+      leadToastMessage.textContent = message;
+      leadToast.classList.add('visible');
+      leadToast.setAttribute('aria-hidden', 'false');
+      toastTimeoutId = window.setTimeout(hideLeadToast, 4400);
+    };
+
     const buildLeadMailto = (name, phone, business) => {
       const subject = encodeURIComponent('Free Illawarra Website Lead');
       const body = encodeURIComponent([
@@ -1509,12 +1768,114 @@
         `Number: ${phone}`,
         `Business: ${business}`,
         '',
+        `Page: ${window.location.href}`,
         'Campaign: 10 free Illawarra websites'
       ].join('\n'));
 
-      return `mailto:jesse@hawke.solutions?subject=${subject}&body=${body}`;
+      return `mailto:${fallbackEmail}?subject=${subject}&body=${body}`;
     };
     window.buildLeadMailto = buildLeadMailto;
+
+    const generateLeadId = () => `hts-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+
+    const populateLeadTracking = () => {
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById('submittedAt').value = new Date().toISOString();
+      document.getElementById('pageUrl').value = window.location.href;
+      document.getElementById('referrer').value = document.referrer || '';
+      document.getElementById('utmSource').value = params.get('utm_source') || '';
+      document.getElementById('utmMedium').value = params.get('utm_medium') || '';
+      document.getElementById('utmCampaign').value = params.get('utm_campaign') || '';
+      document.getElementById('utmContent').value = params.get('utm_content') || '';
+      document.getElementById('utmTerm').value = params.get('utm_term') || '';
+      document.getElementById('fbclid').value = params.get('fbclid') || '';
+      document.getElementById('gclid').value = params.get('gclid') || '';
+      document.getElementById('leadId').value = generateLeadId();
+    };
+
+    const setSubmissionPending = (pending) => {
+      submissionPending = pending;
+      leadSubmitButton.disabled = pending;
+      leadSubmitButton.innerHTML = pending ? 'Sending your details...' : submitButtonLabel;
+    };
+
+    const finishLeadSuccess = () => {
+      if (!submissionPending) {
+        return;
+      }
+
+      window.clearTimeout(submissionTimeoutId);
+      allowFrameLoadSuccess = false;
+      setSubmissionPending(false);
+      leadForm.reset();
+      populateLeadTracking();
+      setFormStatus('success', 'Thanks. I have your details and will be in touch soon.');
+      showLeadToast('Thanks', "I've got your details and I'll be in touch soon.", 'success');
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', {
+          event_category: 'lead_form',
+          event_label: 'website_lead_capture',
+          value: 1
+        });
+      }
+    };
+
+    const finishLeadError = (statusMessage, toastTitle, toastMessage) => {
+      if (!submissionPending) {
+        return;
+      }
+
+      window.clearTimeout(submissionTimeoutId);
+      allowFrameLoadSuccess = false;
+      setSubmissionPending(false);
+      setFormStatus('error', statusMessage);
+      showLeadToast(toastTitle, toastMessage, 'error');
+    };
+
+    if (directCaptureEnabled) {
+      leadForm.action = endpoint;
+      formNote.textContent = 'Comes straight to Jesse. Faster: 0410 640 220.';
+    } else {
+      formNote.textContent = 'If the form does not go through, call or text Jesse on 0410 640 220.';
+    }
+
+    populateLeadTracking();
+    leadToastClose.addEventListener('click', hideLeadToast);
+
+    leadSubmitFrame.addEventListener('load', () => {
+      if (!submissionPending || !allowFrameLoadSuccess) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        if (!submissionPending || !allowFrameLoadSuccess) {
+          return;
+        }
+        finishLeadSuccess();
+      }, 240);
+    });
+
+    window.addEventListener('message', (event) => {
+      const data = event.data || {};
+      if (!data || data.source !== 'hts-lead-capture') {
+        return;
+      }
+
+      if (!submissionPending) {
+        return;
+      }
+
+      if (data.status === 'success') {
+        finishLeadSuccess();
+        return;
+      }
+
+      finishLeadError(
+        'Something went wrong. Call or text Jesse on 0410 640 220.',
+        'Something went wrong',
+        'Please try again, or call or text Jesse on 0410 640 220.'
+      );
+    });
 
     leadForm.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -1528,7 +1889,30 @@
         return;
       }
 
-      window.location.href = buildLeadMailto(name, phone, business);
+      populateLeadTracking();
+
+      if (!directCaptureEnabled) {
+        setFormStatus('', 'Opening your email app with the lead details.');
+        window.location.href = buildLeadMailto(name, phone, business);
+        return;
+      }
+
+      hideLeadToast();
+      allowFrameLoadSuccess = usesRemoteLeadEndpoint;
+      setSubmissionPending(true);
+      setFormStatus('pending', 'Sending your details...');
+      submissionTimeoutId = window.setTimeout(() => {
+        if (!submissionPending) {
+          return;
+        }
+        finishLeadError(
+          'That took longer than expected. Try again, or call/text Jesse on 0410 640 220.',
+          'Please try again',
+          'That took longer than expected. Try again, or call or text Jesse on 0410 640 220.'
+        );
+      }, usesRemoteLeadEndpoint ? 20000 : 12000);
+
+      HTMLFormElement.prototype.submit.call(leadForm);
     });
 
     const revealObserver = new IntersectionObserver((entries) => {
