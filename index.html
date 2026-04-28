@@ -2608,7 +2608,7 @@
                 Apply for the free build
                 <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
               </button>
-              <p id="formNote" class="form-note">No design fee. No build fee. Comes straight to Jesse.</p>
+              <p id="formNote" class="form-note">No design fee. No build fee.</p>
               <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
             </form>
             <iframe id="leadSubmitFrame" name="leadSubmitFrame" title="Lead submission" hidden></iframe>
@@ -2786,7 +2786,7 @@
 
     if (directCaptureEnabled) {
       leadForm.action = endpoint;
-      formNote.textContent = 'No design fee. No build fee. Comes straight to Jesse.';
+      formNote.textContent = 'No design fee. No build fee.';
     } else {
       formNote.textContent = 'No design fee. No build fee. If the form does not go through, call or text Jesse on 0410 640 220.';
     }
