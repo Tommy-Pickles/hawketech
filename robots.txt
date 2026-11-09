@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hawketech.com.au/sitemap.xml
+Sitemap: https://www.hawketech.com.au/sitemap.xml
