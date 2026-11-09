@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hawke Tech | Websites for Perth Local Businesses</title>
-  <meta name="description" content="Websites and online booking for Perth shops, trades and mobile services. See a working preview of your new site before you pay anything.">
+  <meta name="description" content="Simple websites for Perth shops, trades and mobile services. See a working preview of yours before you pay anything.">
   <link rel="canonical" href="https://www.hawketech.com.au/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="geo.region" content="AU-WA">
@@ -47,8 +47,8 @@
     "taxID": "84429688089",
     "address": { "@type": "PostalAddress", "addressLocality": "Perth", "addressRegion": "WA", "addressCountry": "AU" },
     "areaServed": { "@type": "City", "name": "Perth" },
-    "description": "Websites, traffic and lead reporting, and online booking for Perth local businesses.",
-    "serviceType": ["Website Design", "Local SEO", "Online Booking"],
+    "description": "Simple websites for Perth local businesses.",
+    "serviceType": ["Website Design"],
     "sameAs": ["https://www.facebook.com/profile.php?id=61567933567958"]
   }
   </script>
@@ -231,52 +231,28 @@
     }
     .steps p { margin-top: 8px; color: var(--muted); }
 
-    /* Booking */
-    .booking { background: var(--ink); color: var(--white); }
-    .booking-grid { display: grid; gap: clamp(36px, 6vw, 64px); align-items: center; }
-    .booking-grid > * { min-width: 0; }
-    .booking .eyebrow { color: #B9E58A; }
-    .booking .lede { color: rgba(255, 255, 255, 0.72); }
-    .ticks { display: grid; gap: 12px; margin: 26px 0 0; padding: 0; list-style: none; }
+    .ticks { display: grid; gap: 12px; margin: 0 0 26px; padding: 0; list-style: none; }
     .ticks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
     .ticks li::before { content: "✓"; color: var(--green); font-weight: 800; }
-    .booking .ticks li::before { color: #B9E58A; }
-    .booking .browser { border-color: rgba(255, 255, 255, 0.18); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45); }
 
-    /* Prices */
-    .price-grid { display: grid; gap: 16px; margin-top: 44px; }
+    /* Price */
     .price {
-      display: flex;
-      flex-direction: column;
-      padding: 30px 26px;
-      border: 1px solid var(--line);
+      display: grid;
+      gap: 30px;
+      max-width: 860px;
+      margin-top: 40px;
+      padding: clamp(26px, 4vw, 42px);
+      border: 1px solid rgba(110, 168, 46, 0.55);
       border-radius: var(--radius);
       background: var(--white);
-      box-shadow: var(--shadow-1);
+      box-shadow: var(--shadow-2);
     }
-    .price.pick { border-color: rgba(110, 168, 46, 0.55); box-shadow: 0 0 0 1px rgba(110, 168, 46, 0.3), var(--shadow-2); }
-    .price-tag { align-self: flex-start; margin-bottom: 12px; padding: 3px 10px; border-radius: 99px; background: var(--mint); color: var(--green-deep); font-size: 0.75rem; font-weight: 800; }
-    .amount { margin-top: 18px; font-family: "Space Grotesk", sans-serif; font-size: 2.5rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-    .amount-sub { margin-top: 6px; color: var(--muted); font-size: 0.9375rem; }
-    .price .ticks { margin-bottom: 26px; font-size: 0.9688rem; }
-    .price .btn { margin-top: auto; }
-    .founders {
-      margin-top: 16px;
-      padding: 18px 24px;
-      border-radius: var(--radius);
-      background: var(--mint);
-      color: var(--green-deep);
-    }
+    .amount { margin-top: 18px; font-family: "Space Grotesk", sans-serif; font-size: 3.25rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
+    .amount-sub { margin-top: 8px; color: var(--muted); }
+    .price .btn { width: 100%; }
+    .founders { margin-top: 22px; padding: 14px 16px; border-radius: var(--radius); background: var(--mint); color: var(--green-deep); font-size: 0.9375rem; }
     .founders strong { font-weight: 800; }
     .fine { margin-top: 14px; color: var(--muted); font-size: 0.875rem; }
-
-    /* About and questions */
-    .about { background: var(--white); border-block: 1px solid var(--line); }
-    .about-grid { display: grid; gap: clamp(36px, 6vw, 72px); }
-    .faq { display: grid; gap: 10px; }
-    details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
-    summary { padding: 16px 20px; font-weight: 800; cursor: pointer; }
-    details p { padding: 0 20px 18px; color: var(--muted); font-size: 0.9688rem; }
 
     /* Contact */
     .contact-grid { display: grid; gap: clamp(36px, 6vw, 72px); align-items: start; }
@@ -317,9 +293,8 @@
       .nav { display: flex; }
       .hero-grid { grid-template-columns: 1.02fr 1fr; }
       .hero-actions .btn { flex: 0 1 auto; }
-      .booking-grid { grid-template-columns: 1fr 1.1fr; }
-      .price-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .about-grid, .contact-grid { grid-template-columns: 1fr 1fr; }
+      .price { grid-template-columns: 1fr 1fr; align-items: center; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -334,7 +309,7 @@
       <nav class="nav" aria-label="Main">
         <a href="#work">Work</a>
         <a href="#how">How it works</a>
-        <a href="#prices">Prices</a>
+        <a href="#prices">Price</a>
         <a href="#contact">Contact</a>
       </nav>
       <a class="btn btn-solid" href="tel:+61410640220" data-track="call_header">Call Jesse</a>
@@ -352,7 +327,7 @@
             <a class="btn btn-solid" href="#contact">Ask for a free preview</a>
             <a class="btn btn-line" href="#work">See real sites</a>
           </div>
-          <p class="hero-note">Setup from $990. No preview fee and no obligation.</p>
+          <p class="hero-note">$990 setup, then $49 a month. No charge for the preview.</p>
         </div>
         <div class="stack">
           <div class="browser first">
@@ -378,7 +353,7 @@
             <div class="work-copy">
               <small>Mobile detailing</small>
               <h3>Splash n' Dash</h3>
-              <p>Packages, area pages, and customers booking a time online.</p>
+              <p>Packages, photos and an easy way to get in touch.</p>
             </div>
           </a>
           <a class="work-card" href="https://dhokkoon.com" target="_blank" rel="noopener">
@@ -394,7 +369,7 @@
             <div class="work-copy">
               <small>Barbershop</small>
               <h3>Alpha Barbershop</h3>
-              <p>Every service links straight into the shop's existing booking app.</p>
+              <p>Services, gallery and location, all easy to find on a phone.</p>
             </div>
           </a>
         </div>
@@ -422,103 +397,28 @@
       </div>
     </section>
 
-    <section class="booking">
-      <div class="shell booking-grid">
-        <div>
-          <span class="eyebrow">Hawke Bookings</span>
-          <h2>Take bookings while you're on the tools.</h2>
-          <p class="lede">My own booking system, built into your website and running for a real business today. No marketplace between you and your customers.</p>
-          <ul class="ticks">
-            <li>Customers pick a service and a time, day or night</li>
-            <li>Take deposits through Stripe</li>
-            <li>Approve each job before it's confirmed</li>
-            <li>Add travel time between jobs</li>
-            <li>Manage it all from your phone</li>
-          </ul>
-        </div>
-        <div class="browser">
-          <div class="browser-bar"><i></i><i></i><i></i><b>Splash n' Dash online booking</b></div>
-          <img src="work/booking.jpg" width="1280" height="800" alt="Online booking page listing Splash n' Dash detailing packages and prices" loading="lazy">
-        </div>
-      </div>
-    </section>
-
     <section id="prices">
       <div class="shell">
-        <span class="eyebrow">Prices</span>
-        <h2>One setup fee. One monthly fee.</h2>
-        <p class="lede">Start with a website and add the rest when it's worth it to you.</p>
-        <div class="price-grid">
-          <article class="price">
-            <h3>Website</h3>
+        <span class="eyebrow">Price</span>
+        <h2>One simple website. One price.</h2>
+        <article class="price">
+          <div>
+            <h3>Your website</h3>
             <div class="amount">$990</div>
             <div class="amount-sub">setup, then $49 a month</div>
+            <p class="founders"><strong>Moving-in offer:</strong> setup is $490 for my first three Perth clients.</p>
+          </div>
+          <div>
             <ul class="ticks">
-              <li>Mobile-first website built for your business</li>
+              <li>A clean website built for your business</li>
               <li>Tap to call, directions and contact buttons</li>
               <li>Set up to be found on Google</li>
               <li>Hosting and small edits included</li>
             </ul>
-            <a class="btn btn-line" href="#contact">Ask for a preview</a>
-          </article>
-          <article class="price pick">
-            <span class="price-tag">Best value</span>
-            <h3>Website + Leads</h3>
-            <div class="amount">$990</div>
-            <div class="amount-sub">setup, then $129 a month</div>
-            <ul class="ticks">
-              <li>Everything in Website</li>
-              <li>Tracking of calls, direction taps and enquiries</li>
-              <li>A one-page report every month</li>
-              <li>Your Google Business Profile kept up to date</li>
-            </ul>
-            <a class="btn btn-solid" href="#contact">Ask for a preview</a>
-          </article>
-          <article class="price">
-            <h3>Website + Booking</h3>
-            <div class="amount">$1,490</div>
-            <div class="amount-sub">setup, then $199 a month</div>
-            <ul class="ticks">
-              <li>Everything in Website + Leads</li>
-              <li>Hawke Bookings built into your site</li>
-              <li>Deposits, approvals and travel time</li>
-              <li>Set up and supported by me</li>
-            </ul>
-            <a class="btn btn-line" href="#contact">Ask for a preview</a>
-          </article>
-        </div>
-        <div class="founders">
-          <span><strong>Moving-in offer:</strong> setup is $490 for my first three Perth clients.</span>
-        </div>
+            <a class="btn btn-solid" href="#contact">Ask for a free preview</a>
+          </div>
+        </article>
         <p class="fine">Prices in Australian dollars.</p>
-      </div>
-    </section>
-
-    <section class="about">
-      <div class="shell about-grid">
-        <div>
-          <span class="eyebrow">Who you're dealing with</span>
-          <h2>One person. Your call goes to me.</h2>
-          <p class="lede">I'm Jesse Hawke. I moved to Perth from the Illawarra, where I built websites and a booking system for local businesses. I design it, build it, and I'm the one who picks up when you need a change.</p>
-        </div>
-        <div class="faq">
-          <details open>
-            <summary>What does a preview cost?</summary>
-            <p>Nothing, and you don't have to buy anything after seeing it.</p>
-          </details>
-          <details>
-            <summary>I already have a Facebook page. Why bother?</summary>
-            <p>Keep it. A website gives Google something to show when people search for what you do, and gives customers your menu, prices and phone number in one tap.</p>
-          </details>
-          <details>
-            <summary>Do I need my own photos and words?</summary>
-            <p>Phone photos are fine. I write the words with you and fix them until they sound like your business.</p>
-          </details>
-          <details>
-            <summary>Can you work with my existing domain?</summary>
-            <p>Yes. If you already own a domain, we can point it to the new site.</p>
-          </details>
-        </div>
       </div>
     </section>
 
@@ -527,7 +427,7 @@
         <div>
           <span class="eyebrow">Get in touch</span>
           <h2>Want to see yours?</h2>
-          <p class="lede">Leave your details and I'll get back to you. Or just call or text.</p>
+          <p class="lede">I'm Jesse Hawke. I moved to Perth from the Illawarra, where I built websites for local businesses. Leave your details, or just call or text me.</p>
           <div class="contact-lines">
             <a href="tel:+61410640220" data-track="call_contact">0410 640 220</a>
             <a href="mailto:jesse@hawke.solutions">jesse@hawke.solutions</a>
