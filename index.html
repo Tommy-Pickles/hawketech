@@ -72,6 +72,11 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (min-height: 520px) {
+      html { scroll-snap-type: y mandatory; }
+      html:has(form:focus-within) { scroll-snap-type: none; }
+    }
     body {
       margin: 0;
       background: var(--paper);
@@ -91,13 +96,21 @@
       line-height: 1.04;
       overflow-wrap: break-word;
     }
-    h1 { font-size: clamp(2rem, 11.5vw, 7rem); }
+    h1 { font-size: clamp(2rem, min(11.5vw, 11svh), 7rem); }
     h2 { font-size: clamp(2rem, 4.6vw, 3.25rem); }
     h3 { font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
     p { margin: 0; }
 
     .shell { width: min(1160px, 100% - var(--gutter) * 2); margin-inline: auto; }
-    section { padding-block: var(--section); }
+    .panel {
+      display: flex;
+      min-height: 100vh;
+      min-height: 100svh;
+      flex-direction: column;
+      justify-content: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
 
     /* Buttons */
     .btn {
@@ -125,7 +138,7 @@
     :focus-visible { outline: 3px solid rgba(110, 168, 46, 0.75); outline-offset: 3px; border-radius: 4px; }
 
     /* Header */
-    .header-row { display: flex; min-height: 88px; align-items: center; }
+    .header-row { position: absolute; top: 0; left: 50%; z-index: 5; display: flex; min-height: 88px; align-items: center; transform: translateX(-50%); }
     .wordmark {
       font-family: "Instrument Sans", "Space Grotesk", sans-serif;
       font-weight: 500;
@@ -136,14 +149,52 @@
     }
     .wordmark span { display: block; }
 
-    /* Floating call button */
-    .call-float {
+    /* Floating controls */
+    .next, .call-float {
       position: fixed;
-      right: var(--gutter);
       bottom: calc(16px + env(safe-area-inset-bottom));
       z-index: 30;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition-property: transform, opacity, background-color;
+      transition-duration: 180ms;
+      transition-timing-function: var(--ease);
+    }
+    .next {
+      right: 0;
+      left: 0;
+      width: fit-content;
+      min-height: 52px;
+      gap: 8px;
+      margin-inline: auto;
+      padding: 12px 22px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: var(--shadow-2);
+      font-weight: 800;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+    .next:hover { background: var(--mint); transform: translateY(-2px); }
+    .next:active { transform: translateY(0) scale(.985); }
+    .next svg { width: 18px; height: 18px; animation: bob 1.8s var(--ease) infinite; }
+    .next.gone { opacity: 0; pointer-events: none; transform: translateY(12px); }
+    @media (max-width: 380px) { .next { right: calc(var(--gutter) + 60px); left: var(--gutter); } }
+    @keyframes bob { 50% { transform: translateY(3px); } }
+    .call-float {
+      right: var(--gutter);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
       box-shadow: var(--shadow-2);
     }
+    .call-float:hover { background: #26301F; transform: translateY(-2px); }
+    .call-float:active { transform: translateY(0) scale(.96); }
+    .call-float svg { width: 22px; height: 22px; }
 
     /* Hero and price */
     .swap {
@@ -155,34 +206,75 @@
       transition-timing-function: var(--ease);
     }
     .swap.out { opacity: 0; transform: translateY(0.12em); }
-    .no-lock { margin-top: -24px; font-size: 1.25rem; font-weight: 800; }
+    .no-lock { margin-top: calc(clamp(24px, 5svh, 64px) * -0.5); font-size: 1.25rem; font-weight: 800; }
     .hero { padding-block: clamp(24px, 5vw, 64px) var(--section); }
-    .price { display: flex; flex-wrap: wrap; gap: 16px clamp(40px, 8vw, 96px); margin: clamp(36px, 6vw, 64px) 0; }
+    .hero { padding-block: 88px 92px; }
+    .price { display: flex; flex-wrap: wrap; gap: 16px clamp(40px, 8vw, 96px); margin: clamp(24px, 5svh, 64px) 0; }
     .price div { min-width: 0; }
     .price dt { color: var(--muted); font-weight: 800; }
-    .price dd { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(3rem, 7vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+    .price dd { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(3rem, min(7vw, 9svh), 4.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
 
-    /* Work */
-    .work { background: var(--white); border-block: 1px solid var(--line); }
-    .work-grid { display: grid; gap: 22px; margin-top: 36px; }
-    .work-card {
-      display: block;
+    /* Previous work carousel */
+    .work { padding-block: 32px 92px; background: var(--white); }
+    .stage {
+      width: min(100%, max(320px, calc((100svh - 400px) * 1.6)));
+      margin-inline: auto;
+      transition-property: transform, opacity;
+      transition-duration: 460ms;
+      transition-timing-function: var(--ease);
+    }
+    .stage.pre { opacity: 0; transform: translateY(28px) scale(.92); }
+    .track {
+      display: flex;
+      gap: 32px;
+      margin: 8px -16px 0;
+      padding: 12px 16px 24px;
+      overflow-x: auto;
+      scroll-padding-inline: 16px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .track::-webkit-scrollbar { display: none; }
+    .slide {
+      flex: 0 0 100%;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--white);
       box-shadow: var(--shadow-1);
+      scroll-snap-align: center;
       text-decoration: none;
-      transition-property: transform, box-shadow;
-      transition-duration: 200ms;
+    }
+    .slide img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
+    .slide h3 { padding: 14px 20px 16px; }
+    .controls { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .arrow {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      transition-property: transform, background-color;
+      transition-duration: 180ms;
       transition-timing-function: var(--ease);
     }
-    .work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
-    .work-card:active { transform: translateY(-1px); }
-    .work-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
-    .work-card h3 { padding: 16px 20px 18px; }
+    .arrow:hover { background: var(--mint); transform: translateY(-2px); }
+    .arrow:active { transform: translateY(0) scale(.96); }
+    .arrow svg { width: 18px; height: 18px; }
+    .dots { display: flex; }
+    .dot { display: grid; width: 24px; height: 44px; padding: 0; place-items: center; border: 0; background: none; cursor: pointer; }
+    .dot::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); opacity: .22; transition: opacity 180ms var(--ease); }
+    .dot:hover::before { opacity: .5; }
+    .dot[aria-current="true"]::before { opacity: 1; }
 
     /* Contact */
+    .end { justify-content: flex-start; }
+    .contact { display: flex; flex: 1; align-items: center; padding-block: 32px; }
     .contact-grid { display: grid; gap: clamp(32px, 6vw, 72px); align-items: start; }
     .contact-grid > * { min-width: 0; }
     .contact-lines { display: grid; gap: 6px; margin-top: 20px; font-size: 1.25rem; font-weight: 800; }
@@ -209,18 +301,17 @@
     .hidden-frame { display: none; }
 
     /* Footer */
-    .footer { padding-block: 34px 104px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
+    .footer { padding-block: 24px 84px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
     .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
     .footer a { text-underline-offset: 3px; }
 
-    @media (min-width: 720px) {
-      .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
     @media (min-width: 900px) {
       .contact-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .btn, .work-card, .contact-lines a, .swap { transition: none; }
+      html { scroll-behavior: auto; }
+      .btn, .next, .call-float, .arrow, .stage, .contact-lines a, .swap { transition: none; }
+      .next svg { animation: none; }
     }
   </style>
 </head>
@@ -230,7 +321,7 @@
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero panel">
       <div class="shell">
         <h1 aria-label="I make websites for your business, club, school, organisation or charity.">I make websites for your <span class="swap" id="swap" aria-hidden="true">business.</span></h1>
         <dl class="price" id="prices">
@@ -241,27 +332,39 @@
       </div>
     </section>
 
-    <section class="work" id="work">
+    <section class="work panel" id="work">
       <div class="shell">
-        <h2>Previous work</h2>
-        <div class="work-grid">
-          <a class="work-card" href="https://splashndashmd.com" target="_blank" rel="noopener">
-            <img src="work/splash-n-dash.jpg" width="1280" height="800" alt="Splash n' Dash website" loading="lazy">
-            <h3>Splash n' Dash</h3>
-          </a>
-          <a class="work-card" href="https://dhokkoon.com" target="_blank" rel="noopener">
-            <img src="work/dhok-koon.jpg" width="1280" height="800" alt="Dhok Koon Thai website" loading="lazy">
-            <h3>Dhok Koon Thai</h3>
-          </a>
-          <a class="work-card" href="https://alphabarbershopwoonona.com" target="_blank" rel="noopener">
-            <img src="work/alpha-barbershop.jpg" width="1280" height="800" alt="Alpha Barbershop website" loading="lazy">
-            <h3>Alpha Barbershop</h3>
-          </a>
+        <div class="stage" id="stage">
+          <h2>Previous work</h2>
+          <div class="track" id="track" tabindex="0" role="region" aria-label="Previous work">
+            <a class="slide" href="https://splashndashmd.com" target="_blank" rel="noopener">
+              <img src="work/splash-n-dash.jpg" width="1280" height="800" alt="Splash n' Dash website">
+              <h3>Splash n' Dash</h3>
+            </a>
+            <a class="slide" href="https://dhokkoon.com" target="_blank" rel="noopener">
+              <img src="work/dhok-koon.jpg" width="1280" height="800" alt="Dhok Koon Thai website">
+              <h3>Dhok Koon Thai</h3>
+            </a>
+            <a class="slide" href="https://alphabarbershopwoonona.com" target="_blank" rel="noopener">
+              <img src="work/alpha-barbershop.jpg" width="1280" height="800" alt="Alpha Barbershop website">
+              <h3>Alpha Barbershop</h3>
+            </a>
+          </div>
+          <div class="controls">
+            <button class="arrow" id="prev" type="button" aria-label="Previous website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+            </button>
+            <div class="dots" id="dots"></div>
+            <button class="arrow" id="forward" type="button" aria-label="Next website">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
+    <div class="panel end" id="end">
+    <section id="contact" class="contact">
       <div class="shell contact-grid">
         <div>
           <h2>Contact Jesse</h2>
@@ -301,9 +404,6 @@
         <iframe id="leadSubmitFrame" name="leadSubmitFrame" title="Form submission" class="hidden-frame"></iframe>
       </div>
     </section>
-  </main>
-
-  <a class="btn call-float" href="tel:+61410640220" data-track="call_float">Call 0410 640 220</a>
 
   <footer class="footer">
     <div class="shell footer-row">
@@ -311,6 +411,11 @@
       <span><a href="privacy.html">Privacy</a> · <a href="https://www.facebook.com/profile.php?id=61567933567958" target="_blank" rel="noopener">Facebook</a></span>
     </div>
   </footer>
+    </div>
+  </main>
+
+  <a class="next" id="next" href="#work"><span id="nextLabel">Previous work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg></a>
+  <a class="call-float" href="tel:+61410640220" data-track="call_float" aria-label="Call 0410 640 220"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg></a>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -345,6 +450,92 @@
         }, 240);
       }, 2000);
     }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Floating prompt: points at the next panel, and hides on the last one.
+    const next = document.getElementById('next');
+    const nextLabel = document.getElementById('nextLabel');
+    const nextByPanel = {
+      top: ['#work', 'Previous work'],
+      work: ['#contact', 'Contact']
+    };
+    const hero = document.querySelector('.hero');
+    const panelObserver = new IntersectionObserver((entries) => {
+      entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
+        const target = nextByPanel[entry.target === hero ? 'top' : entry.target.id];
+        next.classList.toggle('gone', !target);
+        next.inert = !target;
+        if (target) {
+          next.href = target[0];
+          nextLabel.textContent = target[1];
+        }
+      });
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    [hero, document.getElementById('work'), document.getElementById('end')].forEach((panel) => panelObserver.observe(panel));
+
+    // Mouse wheel and trackpad: one movement jumps one panel.
+    const panels = [hero, document.getElementById('work'), document.getElementById('end')];
+    const snapQuery = window.matchMedia('(min-height: 520px)');
+    let wheelLocked = false;
+    let wheelJumpAt = 0;
+    let wheelTimer = null;
+    window.addEventListener('wheel', (event) => {
+      if (!snapQuery.matches || event.ctrlKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (document.querySelector('form:focus-within')) return;
+      const last = panels[panels.length - 1];
+      const insideTallLast = last.offsetHeight > window.innerHeight + 2 && window.scrollY >= last.offsetTop - 2;
+      if (insideTallLast && !(event.deltaY < 0 && window.scrollY <= last.offsetTop + 2)) return;
+
+      event.preventDefault();
+      window.clearTimeout(wheelTimer);
+      wheelTimer = window.setTimeout(() => { wheelLocked = false; }, Math.max(160, wheelJumpAt + 700 - Date.now()));
+      if (wheelLocked || event.deltaY === 0) return;
+
+      const current = panels.reduce((found, panel, index) => (panel.offsetTop <= window.scrollY + 2 ? index : found), 0);
+      const target = panels[current + Math.sign(event.deltaY)];
+      if (!target) return;
+      wheelLocked = true;
+      wheelJumpAt = Date.now();
+      window.scrollTo({ top: target.offsetTop });
+    }, { passive: false });
+
+    // Carousel pops up each time the panel comes into view.
+    const stage = document.getElementById('stage');
+    if (!reduceMotion) {
+      stage.classList.add('pre');
+      new IntersectionObserver(([entry]) => {
+        stage.classList.toggle('pre', !entry.isIntersecting);
+      }, { threshold: 0.2 }).observe(document.getElementById('work'));
+    }
+
+    // Carousel controls.
+    const track = document.getElementById('track');
+    const slides = [...track.children];
+    const dotsBox = document.getElementById('dots');
+    const slideStep = () => slides[1].offsetLeft - slides[0].offsetLeft;
+    const currentSlide = () => Math.round(track.scrollLeft / slideStep());
+    const goToSlide = (index) => {
+      const wrapped = (index + slides.length) % slides.length;
+      track.scrollTo({ left: wrapped * slideStep(), behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+    const dots = slides.map((slide, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'dot';
+      dot.setAttribute('aria-label', `Show ${slide.querySelector('h3').textContent}`);
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsBox.append(dot);
+      return dot;
+    });
+    const updateDots = () => {
+      const active = currentSlide();
+      dots.forEach((dot, index) => dot.setAttribute('aria-current', index === active ? 'true' : 'false'));
+    };
+    document.getElementById('prev').addEventListener('click', () => goToSlide(currentSlide() - 1));
+    document.getElementById('forward').addEventListener('click', () => goToSlide(currentSlide() + 1));
+    track.addEventListener('scroll', updateDots, { passive: true });
+    updateDots();
 
     // Track taps on phone links so calls show up in analytics.
     document.querySelectorAll('[data-track]').forEach((link) => {
