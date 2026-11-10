@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hawke Tech | Websites for Perth Local Businesses</title>
-  <meta name="description" content="Simple websites for Perth shops, trades and mobile services. See a working preview of yours before you pay anything.">
+  <title>Hawke Tech | Websites for Perth Businesses</title>
+  <meta name="description" content="I make websites for businesses, clubs, schools, organisations and charities in Perth. $200 sign up, then $20 per month. No lock-in.">
   <link rel="canonical" href="https://www.hawketech.com.au/">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="geo.region" content="AU-WA">
@@ -12,8 +12,8 @@
   <meta name="theme-color" content="#FBFCF7">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Hawke Tech | Websites for Perth Local Businesses">
-  <meta property="og:description" content="See a working preview of your new website before you pay anything.">
+  <meta property="og:title" content="Hawke Tech | Websites for Perth Businesses">
+  <meta property="og:description" content="I make websites for businesses, clubs, schools, organisations and charities in Perth. $200 sign up, then $20 per month. No lock-in.">
   <meta property="og:url" content="https://www.hawketech.com.au/">
   <meta property="og:site_name" content="Hawke Tech">
   <meta property="og:locale" content="en_AU">
@@ -56,7 +56,6 @@
   <style>
     :root {
       --ink: #11140F;
-      --ink-soft: #4D574F;
       --muted: #5E685F;
       --green: #6EA82E;
       --green-deep: #315B18;
@@ -68,12 +67,11 @@
       --shadow-2: 0 2px 6px rgba(38, 50, 33, 0.08), 0 28px 70px rgba(38, 50, 33, 0.16);
       --radius: 10px;
       --gutter: clamp(16px, 4vw, 32px);
-      --section: clamp(64px, 10vw, 120px);
+      --section: clamp(56px, 9vw, 112px);
       --ease: cubic-bezier(.2, .8, .2, 1);
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
     body {
       margin: 0;
       background: var(--paper);
@@ -90,64 +88,44 @@
       font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1.08;
+      line-height: 1.04;
       overflow-wrap: break-word;
     }
-    h1 { font-size: clamp(2.5rem, 7.2vw, 5rem); }
+    h1 { font-size: clamp(2rem, 11.5vw, 7rem); }
     h2 { font-size: clamp(2rem, 4.6vw, 3.25rem); }
-    h3 { font-size: 1.35rem; letter-spacing: -0.02em; line-height: 1.2; }
+    h3 { font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
     p { margin: 0; }
 
     .shell { width: min(1160px, 100% - var(--gutter) * 2); margin-inline: auto; }
     section { padding-block: var(--section); }
-    .eyebrow {
-      display: block;
-      margin-bottom: 14px;
-      color: var(--green-deep);
-      font-size: 0.8125rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .lede { max-width: 58ch; margin-top: 18px; color: var(--muted); font-size: clamp(1.0625rem, 1.6vw, 1.1875rem); }
 
     /* Buttons */
     .btn {
       display: inline-flex;
-      min-height: 52px;
+      min-height: 56px;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 22px;
+      padding: 14px 28px;
       border: 1px solid transparent;
       border-radius: var(--radius);
+      background: var(--ink);
+      color: var(--white);
       font: inherit;
       font-weight: 800;
       line-height: 1.2;
       text-decoration: none;
       cursor: pointer;
-      transition-property: transform, background-color, border-color, box-shadow;
+      transition-property: transform, background-color;
       transition-duration: 180ms;
       transition-timing-function: var(--ease);
     }
-    .btn-solid { background: var(--ink); color: var(--white); box-shadow: 0 12px 28px rgba(17, 20, 15, 0.2); }
-    .btn-solid:hover { background: #26301F; transform: translateY(-2px); box-shadow: 0 18px 38px rgba(17, 20, 15, 0.24); }
-    .btn-line { background: var(--white); border-color: var(--line); color: var(--ink); }
-    .btn-line:hover { border-color: rgba(110, 168, 46, 0.6); background: var(--mint); transform: translateY(-2px); }
+    .btn:hover { background: #26301F; transform: translateY(-2px); }
     .btn:active { transform: translateY(0) scale(.985); }
     .btn:disabled { cursor: wait; opacity: .7; transform: none; }
     :focus-visible { outline: 3px solid rgba(110, 168, 46, 0.75); outline-offset: 3px; border-radius: 4px; }
 
     /* Header */
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(251, 252, 247, 0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
-    .header-row { display: flex; min-height: 72px; align-items: center; justify-content: space-between; gap: 20px; }
+    .header-row { display: flex; min-height: 88px; align-items: center; }
     .wordmark {
       font-family: "Instrument Sans", "Space Grotesk", sans-serif;
       font-weight: 500;
@@ -157,36 +135,36 @@
       text-decoration: none;
     }
     .wordmark span { display: block; }
-    .nav { display: none; gap: 30px; margin-left: auto; font-size: 0.9375rem; font-weight: 800; }
-    .nav a { color: var(--ink-soft); text-decoration: none; transition: color 160ms var(--ease); }
-    .nav a:hover { color: var(--ink); }
-    .header .btn { min-height: 44px; padding: 10px 16px; font-size: 0.9375rem; box-shadow: none; }
 
-    /* Hero */
-    .hero { padding-block: clamp(40px, 7vw, 88px) var(--section); }
-    .hero-grid { display: grid; gap: clamp(40px, 6vw, 72px); align-items: center; }
-    .hero-grid > * { min-width: 0; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-    .hero-actions .btn { flex: 1 1 200px; }
-    .hero-note { margin-top: 18px; color: var(--muted); font-size: 0.9375rem; }
-
-    .stack { position: relative; padding-bottom: 12%; }
-    .browser {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--white);
+    /* Floating call button */
+    .call-float {
+      position: fixed;
+      right: var(--gutter);
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      z-index: 30;
       box-shadow: var(--shadow-2);
     }
-    .browser-bar { display: flex; align-items: center; gap: 6px; height: 30px; padding-inline: 12px; border-bottom: 1px solid var(--line); }
-    .browser-bar i { width: 8px; height: 8px; border-radius: 50%; background: rgba(17, 20, 15, 0.16); }
-    .browser-bar b { margin-left: 8px; color: var(--muted); font-size: 0.6875rem; font-weight: 800; }
-    .stack .second { position: absolute; right: 0; bottom: 0; width: 62%; }
-    .stack .first { width: 88%; }
+
+    /* Hero and price */
+    .swap {
+      display: block;
+      width: fit-content;
+      color: #315B18;
+      transition-property: transform, opacity;
+      transition-duration: 240ms;
+      transition-timing-function: var(--ease);
+    }
+    .swap.out { opacity: 0; transform: translateY(0.12em); }
+    .no-lock { margin-top: -24px; font-size: 1.25rem; font-weight: 800; }
+    .hero { padding-block: clamp(24px, 5vw, 64px) var(--section); }
+    .price { display: flex; flex-wrap: wrap; gap: 16px clamp(40px, 8vw, 96px); margin: clamp(36px, 6vw, 64px) 0; }
+    .price div { min-width: 0; }
+    .price dt { color: var(--muted); font-weight: 800; }
+    .price dd { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: clamp(3rem, 7vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
 
     /* Work */
     .work { background: var(--white); border-block: 1px solid var(--line); }
-    .work-grid { display: grid; gap: 22px; margin-top: 44px; }
+    .work-grid { display: grid; gap: 22px; margin-top: 36px; }
     .work-card {
       display: block;
       overflow: hidden;
@@ -202,65 +180,15 @@
     .work-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
     .work-card:active { transform: translateY(-1px); }
     .work-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
-    .work-copy { padding: 20px 22px 24px; }
-    .work-copy small { color: var(--green-deep); font-size: 0.8125rem; font-weight: 800; }
-    .work-copy h3 { margin-top: 4px; }
-    .work-copy p { margin-top: 8px; color: var(--muted); font-size: 0.9375rem; }
-
-    /* Steps */
-    .steps { display: grid; gap: 14px; margin: 44px 0 0; padding: 0; list-style: none; counter-reset: step; }
-    .steps li {
-      counter-increment: step;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow-1);
-    }
-    .steps li::before {
-      content: counter(step);
-      display: grid;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      margin-bottom: 18px;
-      border-radius: 8px;
-      background: var(--mint);
-      color: var(--green-deep);
-      font-weight: 800;
-    }
-    .steps p { margin-top: 8px; color: var(--muted); }
-
-    .ticks { display: grid; gap: 12px; margin: 0 0 26px; padding: 0; list-style: none; }
-    .ticks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
-    .ticks li::before { content: "✓"; color: var(--green); font-weight: 800; }
-
-    /* Price */
-    .price {
-      display: grid;
-      gap: 30px;
-      max-width: 860px;
-      margin-top: 40px;
-      padding: clamp(26px, 4vw, 42px);
-      border: 1px solid rgba(110, 168, 46, 0.55);
-      border-radius: var(--radius);
-      background: var(--white);
-      box-shadow: var(--shadow-2);
-    }
-    .amount { margin-top: 18px; font-family: "Space Grotesk", sans-serif; font-size: 3.25rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-    .amount-sub { margin-top: 8px; color: var(--muted); }
-    .price .btn { width: 100%; }
-    .founders { margin-top: 22px; padding: 14px 16px; border-radius: var(--radius); background: var(--mint); color: var(--green-deep); font-size: 0.9375rem; }
-    .founders strong { font-weight: 800; }
-    .fine { margin-top: 14px; color: var(--muted); font-size: 0.875rem; }
+    .work-card h3 { padding: 16px 20px 18px; }
 
     /* Contact */
-    .contact-grid { display: grid; gap: clamp(36px, 6vw, 72px); align-items: start; }
+    .contact-grid { display: grid; gap: clamp(32px, 6vw, 72px); align-items: start; }
     .contact-grid > * { min-width: 0; }
-    .contact-lines { display: grid; gap: 6px; margin-top: 26px; font-weight: 800; }
-    .contact-lines a { width: fit-content; text-underline-offset: 4px; overflow-wrap: anywhere; }
+    .contact-lines { display: grid; gap: 6px; margin-top: 20px; font-size: 1.25rem; font-weight: 800; }
+    .contact-lines a { width: fit-content; text-underline-offset: 4px; overflow-wrap: anywhere; transition: color 160ms var(--ease); }
     .contact-lines a:hover { color: var(--green-deep); }
-    form { display: grid; gap: 16px; padding: clamp(22px, 4vw, 34px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow-2); }
+    form { display: grid; gap: 16px; padding: clamp(22px, 4vw, 34px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow-1); }
     label { display: block; margin-bottom: 6px; font-size: 0.875rem; font-weight: 800; }
     input[type="text"], input[type="tel"] {
       width: 100%;
@@ -274,167 +202,76 @@
       font-size: 16px;
     }
     input:focus { border-color: var(--green); }
-    .form-note { color: var(--muted); font-size: 0.875rem; }
-    .form-status { min-height: 1.5em; font-size: 0.9375rem; font-weight: 800; }
+    .form-status { font-size: 0.9375rem; font-weight: 800; }
+    .form-status:empty { display: none; }
     .form-status[data-state="success"] { color: var(--green-deep); }
     .form-status[data-state="error"] { color: #A33A1F; }
     .hidden-frame { display: none; }
 
     /* Footer */
-    .footer { padding-block: 34px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
+    .footer { padding-block: 34px 104px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.875rem; }
     .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
     .footer a { text-underline-offset: 3px; }
 
     @media (min-width: 720px) {
       .work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 900px) {
-      .nav { display: flex; }
-      .hero-grid { grid-template-columns: 1.02fr 1fr; }
-      .hero-actions .btn { flex: 0 1 auto; }
-      .price { grid-template-columns: 1fr 1fr; align-items: center; }
       .contact-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn, .work-card { transition: none; }
+      .btn, .work-card, .contact-lines a, .swap { transition: none; }
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="shell header-row">
-      <a class="wordmark" href="#top" aria-label="Hawke Tech home"><span>Hawke.</span><span>Tech</span></a>
-      <nav class="nav" aria-label="Main">
-        <a href="#work">Work</a>
-        <a href="#how">How it works</a>
-        <a href="#prices">Price</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn btn-solid" href="tel:+61410640220" data-track="call_header">Call Jesse</a>
-    </div>
+  <header class="shell header-row">
+    <a class="wordmark" href="#top" aria-label="Hawke Tech home"><span>Hawke.</span><span>Tech</span></a>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="shell hero-grid">
-        <div>
-          <span class="eyebrow">Websites for Perth local businesses</span>
-          <h1>See your new website before you pay a&nbsp;cent.</h1>
-          <p class="lede">I build websites for Perth shops, trades and mobile services. You look at a working version of yours on your own phone first. If it isn't right for you, you owe nothing.</p>
-          <div class="hero-actions">
-            <a class="btn btn-solid" href="#contact">Ask for a free preview</a>
-            <a class="btn btn-line" href="#work">See real sites</a>
-          </div>
-          <p class="hero-note">$990 setup, then $49 a month. No charge for the preview.</p>
-        </div>
-        <div class="stack">
-          <div class="browser first">
-            <div class="browser-bar"><i></i><i></i><i></i><b>splashndashmd.com</b></div>
-            <img src="work/splash-n-dash.jpg" width="1280" height="800" alt="Splash n' Dash Mobile Detailing website homepage">
-          </div>
-          <div class="browser second">
-            <div class="browser-bar"><i></i><i></i><i></i><b>dhokkoon.com</b></div>
-            <img src="work/dhok-koon.jpg" width="1280" height="800" alt="Dhok Koon Thai Restaurant website homepage">
-          </div>
-        </div>
+      <div class="shell">
+        <h1 aria-label="I make websites for your business, club, school, organisation or charity.">I make websites for your <span class="swap" id="swap" aria-hidden="true">business.</span></h1>
+        <dl class="price" id="prices">
+          <div><dt>Sign up</dt><dd>$200</dd></div>
+          <div><dt>Per month</dt><dd>$20</dd></div>
+        </dl>
+        <p class="no-lock">No lock-in.</p>
       </div>
     </section>
 
     <section class="work" id="work">
       <div class="shell">
-        <span class="eyebrow">Real sites, live now</span>
-        <h2>Built for businesses like yours.</h2>
-        <p class="lede">These were built for businesses on the NSW south coast, before I moved to Perth. Open any of them on your phone.</p>
+        <h2>Previous work</h2>
         <div class="work-grid">
           <a class="work-card" href="https://splashndashmd.com" target="_blank" rel="noopener">
-            <img src="work/splash-n-dash.jpg" width="1280" height="800" alt="" loading="lazy">
-            <div class="work-copy">
-              <small>Mobile detailing</small>
-              <h3>Splash n' Dash</h3>
-              <p>Packages, photos and an easy way to get in touch.</p>
-            </div>
+            <img src="work/splash-n-dash.jpg" width="1280" height="800" alt="Splash n' Dash website" loading="lazy">
+            <h3>Splash n' Dash</h3>
           </a>
           <a class="work-card" href="https://dhokkoon.com" target="_blank" rel="noopener">
-            <img src="work/dhok-koon.jpg" width="1280" height="800" alt="" loading="lazy">
-            <div class="work-copy">
-              <small>Restaurant</small>
-              <h3>Dhok Koon Thai</h3>
-              <p>Menu, opening hours, directions and a tap-to-reserve button.</p>
-            </div>
+            <img src="work/dhok-koon.jpg" width="1280" height="800" alt="Dhok Koon Thai website" loading="lazy">
+            <h3>Dhok Koon Thai</h3>
           </a>
           <a class="work-card" href="https://alphabarbershopwoonona.com" target="_blank" rel="noopener">
-            <img src="work/alpha-barbershop.jpg" width="1280" height="800" alt="" loading="lazy">
-            <div class="work-copy">
-              <small>Barbershop</small>
-              <h3>Alpha Barbershop</h3>
-              <p>Services, gallery and location, all easy to find on a phone.</p>
-            </div>
+            <img src="work/alpha-barbershop.jpg" width="1280" height="800" alt="Alpha Barbershop website" loading="lazy">
+            <h3>Alpha Barbershop</h3>
           </a>
         </div>
-      </div>
-    </section>
-
-    <section id="how">
-      <div class="shell">
-        <span class="eyebrow">How it works</span>
-        <h2>You see it first. Then you decide.</h2>
-        <ol class="steps">
-          <li>
-            <h3>I build a preview</h3>
-            <p>A working version of your site, using what's already public about your business.</p>
-          </li>
-          <li>
-            <h3>You open it on your phone</h3>
-            <p>Tap the buttons and read it the way a customer would. Tell me what's wrong.</p>
-          </li>
-          <li>
-            <h3>You say yes, or no</h3>
-            <p>If it's a yes, we add your real details and photos, and put it on your own domain. If it's a no, it gets deleted.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="prices">
-      <div class="shell">
-        <span class="eyebrow">Price</span>
-        <h2>One simple website. One price.</h2>
-        <article class="price">
-          <div>
-            <h3>Your website</h3>
-            <div class="amount">$990</div>
-            <div class="amount-sub">setup, then $49 a month</div>
-            <p class="founders"><strong>Moving-in offer:</strong> setup is $490 for my first three Perth clients.</p>
-          </div>
-          <div>
-            <ul class="ticks">
-              <li>A clean website built for your business</li>
-              <li>Tap to call, directions and contact buttons</li>
-              <li>Set up to be found on Google</li>
-              <li>Hosting and small edits included</li>
-            </ul>
-            <a class="btn btn-solid" href="#contact">Ask for a free preview</a>
-          </div>
-        </article>
-        <p class="fine">Prices in Australian dollars.</p>
       </div>
     </section>
 
     <section id="contact">
       <div class="shell contact-grid">
         <div>
-          <span class="eyebrow">Get in touch</span>
-          <h2>Want to see yours?</h2>
-          <p class="lede">I'm Jesse Hawke. I moved to Perth from the Illawarra, where I built websites for local businesses. Leave your details, or just call or text me.</p>
+          <h2>Contact Jesse</h2>
           <div class="contact-lines">
             <a href="tel:+61410640220" data-track="call_contact">0410 640 220</a>
             <a href="mailto:jesse@hawketech.com.au">jesse@hawketech.com.au</a>
           </div>
         </div>
         <form id="leadForm" method="post" target="leadSubmitFrame" accept-charset="UTF-8">
-          <input type="hidden" name="campaign" value="Perth preview request">
+          <input type="hidden" name="campaign" value="Website enquiry">
           <input type="hidden" id="submittedAt" name="submitted_at" value="">
           <input type="hidden" id="pageUrl" name="page_url" value="">
           <input type="hidden" id="referrer" name="referrer" value="">
@@ -455,17 +292,18 @@
             <input id="phone" name="phone" type="tel" autocomplete="tel" required>
           </div>
           <div>
-            <label for="business">Business name</label>
+            <label for="business">Business or organisation name</label>
             <input id="business" name="business" type="text" autocomplete="organization" required>
           </div>
-          <button id="leadSubmitButton" type="submit" class="btn btn-solid">Ask for my free preview</button>
-          <p class="form-note">We only use your details to reply to you. See our <a href="privacy.html">privacy policy</a>.</p>
+          <button id="leadSubmitButton" type="submit" class="btn">Send</button>
           <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
         </form>
         <iframe id="leadSubmitFrame" name="leadSubmitFrame" title="Form submission" class="hidden-frame"></iframe>
       </div>
     </section>
   </main>
+
+  <a class="btn call-float" href="tel:+61410640220" data-track="call_float">Call 0410 640 220</a>
 
   <footer class="footer">
     <div class="shell footer-row">
@@ -476,6 +314,28 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Headline: rotate the word and its colour.
+    const swap = document.getElementById('swap');
+    const swapWords = [
+      ['business', '#315B18'],
+      ['club', '#B4431F'],
+      ['school', '#1F5C85'],
+      ['organisation', '#7A3B8F'],
+      ['charity', '#A0600A']
+    ];
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let swapIndex = 0;
+      window.setInterval(() => {
+        swap.classList.add('out');
+        window.setTimeout(() => {
+          swapIndex = (swapIndex + 1) % swapWords.length;
+          swap.textContent = `${swapWords[swapIndex][0]}.`;
+          swap.style.color = swapWords[swapIndex][1];
+          swap.classList.remove('out');
+        }, 240);
+      }, 2000);
+    }
 
     // Track taps on phone links so calls show up in analytics.
     document.querySelectorAll('[data-track]').forEach((link) => {
